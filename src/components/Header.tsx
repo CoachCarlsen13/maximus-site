@@ -6,11 +6,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/free-report", label: "Free Report" },
-  { href: "/ai-audit", label: "AI Audit" },
-  { href: "/growth", label: "Growth Simulator" },
-  { href: "/intelligence", label: "Intelligence" },
-  { href: "/book", label: "The Book" },
+  { href: "/services", label: "Services" },
+  { href: "/trust", label: "Trust" },
+  { href: "/about", label: "About" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Header() {

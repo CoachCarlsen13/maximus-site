@@ -57,6 +57,26 @@ export default function Footer() {
             <h4 className="text-white font-semibold text-sm mb-4">Company</h4>
             <ul className="space-y-2.5">
               <li>
+                <Link href="/about" className="text-white/50 hover:text-gold text-sm transition-colors">
+                  About Joel Wynn
+                </Link>
+              </li>
+              <li>
+                <Link href="/trust" className="text-white/50 hover:text-gold text-sm transition-colors">
+                  Trust & Ethics
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="text-white/50 hover:text-gold text-sm transition-colors">
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-white/50 hover:text-gold text-sm transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/book" className="text-white/50 hover:text-gold text-sm transition-colors">
                   The Agent Revolution
                 </Link>

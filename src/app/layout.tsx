@@ -2,7 +2,7 @@
 // Created: 2026-03-17
 // Updated: 2026-03-27 — Added JSON-LD Organization + WebSite schema for AEO/GEO visibility
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const organizationSchema = {
@@ -27,7 +27,7 @@ const organizationSchema = {
     "Business Intelligence",
     "AI Operational Audit",
   ],
-  slogan: "Your competitors have an unfair advantage. We help you take it from them.",
+  slogan: "Everyone else made you AI promises. We built the system that actually delivers.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
@@ -57,9 +57,20 @@ const websiteSchema = {
   },
 };
 
-const inter = Inter({
-  variable: "--font-geist-sans",
+// Display font: Cormorant Garamond — ultra-premium serif, signals serious advisory (not AI startup)
+const display = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Body font: Plus Jakarta Sans — modern, refined, not the cliché Inter/Space Grotesk
+const body = Plus_Jakarta_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -69,7 +80,7 @@ export const metadata: Metadata = {
     template: "%s | Maximus AI",
   },
   description:
-    "Enterprise-grade competitive intelligence, powered by AI, built for your business. Dominate your market before your competitors do.",
+    "Everyone else made you AI promises. We built the system that actually delivers. Self-learning. Self-improving. Self-governing. The AI system that gets smarter while your competition sleeps.",
   keywords: [
     "competitive intelligence",
     "AI consulting",
@@ -115,7 +126,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${display.variable} ${body.variable} antialiased`}>{children}</body>
     </html>
   );
 }

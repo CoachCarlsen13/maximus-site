@@ -1,9 +1,86 @@
 // Maximus AI Strategic Advisory — Homepage
 // Created: 2026-03-17
+// Updated: 2026-03-29 — Full rewrite: Joel headline directive + Promises vs Proof + 6-pillar system
+// Aesthetic: Premium dark luxury consulting. Cormorant Garamond authority. Not generic AI.
+"use client";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CTAButton from "../components/CTAButton";
 import StatCard from "../components/StatCard";
+
+// ─── System Pillars ─────────────────────────────────────────────────────────
+const SYSTEM_PILLARS = [
+  {
+    id: "self-learning",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      </svg>
+    ),
+    label: "Self-Learning",
+    description: "Every engagement makes the system sharper. It reads patterns across clients, markets, and outcomes — and rewrites its own playbooks.",
+  },
+  {
+    id: "self-improving",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+    ),
+    label: "Self-Improving",
+    description: "Every output is graded. Every grade drives an upgrade. The system that ran last quarter is measurably better than the one that runs today.",
+  },
+  {
+    id: "self-governing",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 10.5c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.634-.357-3.182-.995-4.578A11.956 11.956 0 0112 2.714z" />
+      </svg>
+    ),
+    label: "Self-Governing",
+    description: "A dual-constitution ethics engine runs underneath every output. Accuracy over speed. Integrity over shortcuts. No humans required to monitor it.",
+  },
+  {
+    id: "parallelized",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+      </svg>
+    ),
+    label: "Parallelized Intelligence",
+    description: "12 specialized agents working simultaneously — not one AI thinking sequentially. The same intelligence McKinsey deploys 20 analysts to produce.",
+  },
+  {
+    id: "verified",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375" />
+      </svg>
+    ),
+    label: "Hallucination-Free",
+    description: "Every data point traced to a real source. Every competitor verified against live web data. If it can't be confirmed, it doesn't ship.",
+  },
+  {
+    id: "delivery",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    label: "48-Hour Delivery",
+    description: "Enterprise-grade competitive intelligence in 48 hours. What consulting firms charge $25,000 and three weeks for — delivered Tuesday.",
+  },
+];
+
+// ─── Broken Promises (the before) ───────────────────────────────────────────
+const BROKEN_PROMISES = [
+  "\"Just adopt the tools and AI will transform your business.\"",
+  "\"Our platform will automate everything — no expertise needed.\"",
+  "\"Set it and forget it. The AI handles it from here.\"",
+  "\"You'll see ROI in 30 days. Guaranteed.\"",
+  "\"Our AI understands your business like a consultant would.\"",
+];
 
 export default function Home() {
   return (
@@ -11,204 +88,441 @@ export default function Home() {
       <Header />
 
       <main>
-        {/* ───────────────────────────────────────────────
-            SECTION 1: HERO
-        ─────────────────────────────────────────────── */}
-        <section className="relative min-h-screen flex items-center bg-navy pt-24 overflow-hidden">
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-light opacity-80" />
-          {/* Subtle radial glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gold/5 blur-3xl" />
 
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-            <h1 className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight tracking-tight mb-8">
-              Your Competitors Have an{" "}
-              <span className="text-gradient">Unfair Advantage.</span>
+        {/* ═══════════════════════════════════════════════
+            SECTION 1 — HERO
+            Deep dark navy. Gold authority. Cormorant headlines.
+            The promise-vs-proof framing opens here.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="relative min-h-screen flex items-center pt-24 overflow-hidden"
+          style={{ background: "linear-gradient(160deg, #070E1C 0%, #0F1A2E 60%, #1B2A4A 100%)" }}
+        >
+          {/* Deep atmospheric glow */}
+          <div
+            className="absolute top-0 right-0 w-[900px] h-[900px] rounded-full opacity-30 pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%)",
+              transform: "translate(20%, -20%)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(46,74,122,0.4) 0%, transparent 70%)",
+              transform: "translate(-30%, 30%)",
+            }}
+          />
+
+          {/* Subtle grid texture */}
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{
+              backgroundImage: `linear-gradient(rgba(212,168,67,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,168,67,1) 1px, transparent 1px)`,
+              backgroundSize: "80px 80px",
+            }}
+          />
+
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            {/* Eyebrow */}
+            <div className="animate-fade-in-up flex items-center gap-3 mb-10">
+              <div className="h-px w-12 bg-gold/60" />
+              <span
+                className="text-gold/80 text-xs font-semibold tracking-[0.25em] uppercase"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Maximus AI Strategic Advisory
+              </span>
+            </div>
+
+            {/* Main headline — Cormorant Garamond display */}
+            <h1
+              className="animate-fade-in-up animate-delay-100 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] tracking-tight mb-8"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 600, color: "#F8F9FA" }}
+            >
+              Everyone else made you{" "}
+              <em
+                className="not-italic"
+                style={{
+                  background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 50%, #D4A843 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                AI promises.
+              </em>
               <br />
-              <span className="block mt-2">
-                You&apos;re About to Take It From Them.
+              <span className="text-white/90">
+                We built the system that{" "}
+              </span>
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #E8C97A 0%, #D4A843 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                actually delivers.
               </span>
             </h1>
 
-            <p className="animate-fade-in-up animate-delay-200 text-lg sm:text-xl lg:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-10">
-              We deliver the competitive intelligence that billion-dollar
-              companies pay millions for — built for your business, powered by
-              AI, ready in 48 hours. None of the other businesses in your market
-              have this yet. The first one who gets it wins.
+            {/* Subheadline */}
+            <p
+              className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl leading-relaxed mb-12 max-w-3xl"
+              style={{
+                color: "rgba(248,249,250,0.6)",
+                fontFamily: "var(--font-sans)",
+              }}
+            >
+              Self-learning. Self-improving. Self-governing.{" "}
+              <span style={{ color: "rgba(248,249,250,0.85)" }}>
+                The AI system that gets smarter while your competition sleeps.
+              </span>
             </p>
 
-            <div className="animate-fade-in-up animate-delay-300">
+            {/* CTA row */}
+            <div className="animate-fade-in-up animate-delay-300 flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-16">
               <CTAButton
                 href="/free-report"
                 size="xl"
-                micro="No credit card. No sales call. Just a report showing you exactly where you stand."
+                micro="No credit card. No sales call. Just intelligence."
               >
-                See What You&apos;re Missing — It&apos;s Free
+                Get Your Free Competitive Report
               </CTAButton>
+              <a
+                href="/free-report"
+                className="text-white/40 text-sm hover:text-gold/80 transition-colors"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                48-hour delivery →
+              </a>
+            </div>
+
+            {/* Social proof bar */}
+            <div
+              className="animate-fade-in-up animate-delay-400 flex flex-wrap items-center gap-x-8 gap-y-3"
+            >
+              {[
+                { value: "287", label: "Reports delivered this quarter" },
+                { value: "48h", label: "Average delivery time" },
+                { value: "$0", label: "Cost for your first report" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-baseline gap-2">
+                  <span
+                    className="text-2xl font-bold"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {item.value}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ color: "rgba(148,163,184,0.8)", fontFamily: "var(--font-sans)" }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ───────────────────────────────────────────────
-            SECTION 2: THE $500 BILLION
-        ─────────────────────────────────────────────── */}
-        <section className="bg-white py-20 sm:py-28 lg:py-32">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-navy leading-tight mb-8">
-                <span className="text-gradient">$500 billion.</span>{" "}
-                <span className="text-navy">
-                  That&apos;s how much enterprise companies invest in
-                  intelligence every year.
+        {/* ═══════════════════════════════════════════════
+            SECTION 2 — PROMISES VS PROOF
+            The broken promises on the left, dim and struck.
+            The Maximus answer on the right, gold and alive.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-24 sm:py-32 lg:py-40 overflow-hidden"
+          style={{ background: "#0A1120" }}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Section header */}
+            <div className="animate-fade-in-up text-center mb-20">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 bg-gold/40" />
+                <span
+                  className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  The Reality Check
                 </span>
+                <div className="h-px w-12 bg-gold/40" />
+              </div>
+              <h2
+                className="text-4xl sm:text-5xl lg:text-6xl leading-tight text-white"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+              >
+                You&apos;ve heard this before.
               </h2>
-
-              <p className="text-lg sm:text-xl text-slate leading-relaxed mb-10">
-                Enterprise businesses invest $500B into consulting firms like
-                McKinsey, BCG, and Bain. That intelligence is why they dominate.
-                But your real competition isn&apos;t the enterprises — it&apos;s
-                the other small businesses in your market. None of them have
-                access to that caliber of intelligence. Until now. Maximus
-                delivers the same quality — built for your business, at a
-                fraction of the price, 10x faster.
+              <p
+                className="mt-6 text-xl text-white/50 max-w-2xl mx-auto leading-relaxed"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Every tool. Every platform. Every consultant.
+                The same promises. The same results.
               </p>
             </div>
 
-            <div className="animate-fade-in-up animate-delay-200 space-y-5 mb-12">
-              {[
-                "They know exactly which competitors are gaining ground — and the precise moves to block them.",
-                "They know where their revenue is leaking — and how to plug every hole automatically.",
-                "They know which market opportunities are emerging — before anyone else sees them.",
-                "They know how AI is reshaping their customer acquisition — and they've already adapted.",
-                "They know what their customers want next — because the data told them months ago.",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-1.5">
-                    <div className="w-2 h-2 rounded-full bg-gold" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+              {/* LEFT: The Promises — dim, struck, defeated */}
+              <div className="animate-fade-in-up animate-delay-100">
+                <div
+                  className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.08)",
+                    background: "rgba(255,255,255,0.03)",
+                  }}
+                >
+                  <div className="w-2 h-2 rounded-full bg-white/20" />
+                  <span
+                    className="text-xs font-semibold tracking-widest uppercase text-white/30"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    What they promised
+                  </span>
+                </div>
+
+                <div className="space-y-5">
+                  {BROKEN_PROMISES.map((promise, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-4 p-5 rounded-xl"
+                      style={{
+                        background: "rgba(255,255,255,0.02)",
+                        border: "1px solid rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      <div
+                        className="flex-shrink-0 w-5 h-5 rounded-full mt-0.5 flex items-center justify-center"
+                        style={{ background: "rgba(255,255,255,0.06)" }}
+                      >
+                        <svg className="w-3 h-3 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </div>
+                      <p
+                        className="text-base leading-relaxed"
+                        style={{
+                          color: "rgba(255,255,255,0.25)",
+                          fontFamily: "var(--font-sans)",
+                          textDecoration: "line-through",
+                          textDecorationColor: "rgba(255,255,255,0.12)",
+                        }}
+                      >
+                        {promise}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT: What we built — gold, alive, real */}
+              <div className="animate-fade-in-up animate-delay-200">
+                <div
+                  className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border"
+                  style={{
+                    borderColor: "rgba(212,168,67,0.3)",
+                    background: "rgba(212,168,67,0.05)",
+                  }}
+                >
+                  <div className="w-2 h-2 rounded-full bg-gold" />
+                  <span
+                    className="text-xs font-semibold tracking-widest uppercase"
+                    style={{ fontFamily: "var(--font-sans)", color: "#D4A843" }}
+                  >
+                    What we built
+                  </span>
+                </div>
+
+                <div className="space-y-5">
+                  {[
+                    "A system that learns from every client it serves — and gets measurably smarter.",
+                    "Agents that run in parallel, like a 12-person McKinsey team working on your business simultaneously.",
+                    "Quality gates that reject any output that can't be traced to verified real-world data.",
+                    "A self-governing ethics engine that enforces accuracy and integrity without human oversight.",
+                    "Intelligence delivered in 48 hours — not 3 weeks, not $25,000, not a deck of slide platitudes.",
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-4 p-5 rounded-xl transition-all duration-300"
+                      style={{
+                        background: "rgba(212,168,67,0.04)",
+                        border: "1px solid rgba(212,168,67,0.12)",
+                      }}
+                    >
+                      <div
+                        className="flex-shrink-0 w-5 h-5 rounded-full mt-0.5 flex items-center justify-center"
+                        style={{ background: "rgba(212,168,67,0.2)" }}
+                      >
+                        <svg className="w-3 h-3" style={{ color: "#D4A843" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+                      </div>
+                      <p
+                        className="text-base leading-relaxed"
+                        style={{ color: "rgba(248,249,250,0.80)", fontFamily: "var(--font-sans)" }}
+                      >
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 3 — THE SYSTEM
+            Six pillars. Dark cards with gold accents.
+            Display font on labels. Body on descriptions.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-24 sm:py-32 lg:py-40 overflow-hidden"
+          style={{ background: "linear-gradient(180deg, #0F1A2E 0%, #1B2A4A 100%)" }}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div className="animate-fade-in-up text-center mb-20">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 bg-gold/40" />
+                <span
+                  className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  The Architecture
+                </span>
+                <div className="h-px w-12 bg-gold/40" />
+              </div>
+              <h2
+                className="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+              >
+                Six systems working as one.
+              </h2>
+              <p
+                className="mt-6 text-xl max-w-2xl mx-auto leading-relaxed"
+                style={{ color: "rgba(148,163,184,0.8)", fontFamily: "var(--font-sans)" }}
+              >
+                This is why it works when everything else didn&apos;t.
+                Each pillar reinforces the others — and the whole
+                gets smarter over time.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {SYSTEM_PILLARS.map((pillar, i) => (
+                <div
+                  key={pillar.id}
+                  className={`animate-fade-in-up animate-delay-${(i % 5 + 1) * 100} group p-8 rounded-2xl transition-all duration-300`}
+                  style={{
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.border = "1px solid rgba(212,168,67,0.25)";
+                    (e.currentTarget as HTMLDivElement).style.background = "rgba(212,168,67,0.04)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.border = "1px solid rgba(255,255,255,0.08)";
+                    (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.03)";
+                  }}
+                >
+                  {/* Icon */}
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                    style={{ background: "rgba(212,168,67,0.1)", color: "#D4A843" }}
+                  >
+                    {pillar.icon}
                   </div>
-                  <p className="text-base sm:text-lg text-navy/80 leading-relaxed">
-                    {item}
+
+                  {/* Label — display font */}
+                  <h3
+                    className="text-2xl text-white mb-3"
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+                  >
+                    {pillar.label}
+                  </h3>
+
+                  {/* Description */}
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "rgba(148,163,184,0.7)", fontFamily: "var(--font-sans)" }}
+                  >
+                    {pillar.description}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="section-divider mb-10" />
-
-            <p className="animate-fade-in-up animate-delay-300 text-xl sm:text-2xl font-bold text-navy leading-snug">
-              None of the other businesses in your market have this
-              intelligence.{" "}
-              <span className="text-gradient">
-                The first one who gets it dominates the rest.
-              </span>{" "}
-              That should be you.
-            </p>
-          </div>
-        </section>
-
-        {/* ───────────────────────────────────────────────
-            SECTION 3: WHAT MAXIMUS DELIVERS
-        ─────────────────────────────────────────────── */}
-        <section className="bg-navy py-20 sm:py-28 lg:py-32">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="animate-fade-in-up text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center mb-4">
-              What Maximus Delivers
-            </h2>
-            <p className="animate-fade-in-up animate-delay-100 text-white/50 text-center text-lg mb-16 max-w-2xl mx-auto">
-              Four pillars of intelligence that transform how you compete.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-16">
-              {/* Competitor Intelligence */}
-              <div className="animate-fade-in-up animate-delay-100 group bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/30 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Competitor Intelligence
-                </h3>
-                <p className="text-white/60 leading-relaxed">
-                  Which competitors are taking your clients — and the specific
-                  moves that stop it.
-                </p>
-              </div>
-
-              {/* Revenue Recovery */}
-              <div className="animate-fade-in-up animate-delay-200 group bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/30 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Revenue Recovery
-                </h3>
-                <p className="text-white/60 leading-relaxed">
-                  Where you&apos;re bleeding money on manual tasks AI handles
-                  for pennies.
-                </p>
-              </div>
-
-              {/* AI Visibility */}
-              <div className="animate-fade-in-up animate-delay-300 group bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/30 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.007-9.963-7.178z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  AI Visibility
-                </h3>
-                <p className="text-white/60 leading-relaxed">
-                  Where you&apos;re invisible to AI search engines your future
-                  clients use.
-                </p>
-              </div>
-
-              {/* Market Opportunities */}
-              <div className="animate-fade-in-up animate-delay-400 group bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-gold/30 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Market Opportunities
-                </h3>
-                <p className="text-white/60 leading-relaxed">
-                  Revenue opportunities in your market nobody is capturing.
-                </p>
-              </div>
+            {/* Separator + closing statement */}
+            <div className="mt-20 text-center">
+              <div className="section-divider mb-12" />
+              <p
+                className="text-2xl sm:text-3xl text-white leading-snug max-w-3xl mx-auto"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 500 }}
+              >
+                The system that runs tonight will be{" "}
+                <em
+                  className="not-italic"
+                  style={{
+                    background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  smarter by morning.
+                </em>
+              </p>
             </div>
-
-            <div className="section-divider mb-10" />
-
-            <p className="animate-fade-in-up text-xl sm:text-2xl font-bold text-white text-center leading-snug max-w-3xl mx-auto">
-              More clients. Higher profits. Lower costs. And a competitive edge
-              that{" "}
-              <span className="text-gradient">
-                no other small business in your market can match.
-              </span>
-            </p>
           </div>
         </section>
 
-        {/* ───────────────────────────────────────────────
-            SECTION 4: PROOF
-        ─────────────────────────────────────────────── */}
-        <section className="bg-navy-dark py-20 sm:py-28 lg:py-32">
+        {/* ═══════════════════════════════════════════════
+            SECTION 4 — PROOF
+            Stats on dark. Authority numbers.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-24 sm:py-32"
+          style={{ background: "#070E1C" }}
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="animate-fade-in-up text-3xl sm:text-4xl lg:text-5xl font-black text-white text-center mb-4">
-              This isn&apos;t theory.{" "}
-              <span className="text-gradient">It&apos;s already happening.</span>
-            </h2>
-            <p className="animate-fade-in-up animate-delay-100 text-white/50 text-center text-lg mb-16 max-w-2xl mx-auto">
-              Businesses using AI-powered competitive intelligence are
-              outperforming their peers across every metric.
-            </p>
+
+            <div className="animate-fade-in-up text-center mb-16">
+              <h2
+                className="text-4xl sm:text-5xl text-white leading-tight"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+              >
+                This isn&apos;t theory.{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  It&apos;s already happening.
+                </span>
+              </h2>
+              <p
+                className="mt-5 text-lg max-w-xl mx-auto"
+                style={{ color: "rgba(148,163,184,0.6)", fontFamily: "var(--font-sans)" }}
+              >
+                Businesses using AI-powered competitive intelligence
+                are outperforming peers across every metric.
+              </p>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="animate-fade-in-up animate-delay-100">
@@ -241,152 +555,394 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="animate-fade-in-up animate-delay-500 text-white/30 text-sm text-center mt-10">
-              Sources: McKinsey &amp; Company Global AI Survey, Harvard Business
-              Review, OpenAI Enterprise Adoption Report
+            <p
+              className="animate-fade-in-up animate-delay-500 text-center mt-10 text-sm"
+              style={{ color: "rgba(100,116,139,0.6)", fontFamily: "var(--font-sans)" }}
+            >
+              Sources: McKinsey &amp; Company Global AI Survey · Harvard Business Review · OpenAI Enterprise Adoption Report
             </p>
           </div>
         </section>
 
-        {/* ───────────────────────────────────────────────
-            SECTION 5: HOW IT WORKS
-        ─────────────────────────────────────────────── */}
-        <section className="bg-white py-20 sm:py-28 lg:py-32">
+        {/* ═══════════════════════════════════════════════
+            SECTION 5 — WHAT MAXIMUS DELIVERS
+            Four intelligence pillars. Clean dark cards.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-24 sm:py-32 lg:py-40"
+          style={{ background: "#0A1120" }}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div className="animate-fade-in-up text-center mb-20">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 bg-gold/40" />
+                <span
+                  className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  What You Receive
+                </span>
+                <div className="h-px w-12 bg-gold/40" />
+              </div>
+              <h2
+                className="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+              >
+                Enterprise intelligence.
+                <br />
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Built for your business.
+                </span>
+              </h2>
+              <p
+                className="mt-6 text-xl max-w-2xl mx-auto leading-relaxed"
+                style={{ color: "rgba(148,163,184,0.7)", fontFamily: "var(--font-sans)" }}
+              >
+                Four pillars of intelligence that transform how
+                you compete — specific to your market, your
+                competitors, your revenue gaps.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: (
+                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                    </svg>
+                  ),
+                  title: "Competitor Intelligence",
+                  body: "Which competitors are gaining ground in your market — and the specific, actionable moves to block them. Not a list of names. A battle plan.",
+                  tag: "Competitive Edge Report",
+                },
+                {
+                  icon: (
+                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  ),
+                  title: "Revenue Recovery",
+                  body: "Where you&apos;re bleeding money on manual tasks AI handles for pennies — quantified, prioritized, and ready to fix in 30 days.",
+                  tag: "AI Operations Audit",
+                },
+                {
+                  icon: (
+                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.007-9.963-7.178z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  ),
+                  title: "AI Visibility Score",
+                  body: "When a customer asks ChatGPT or Claude for a recommendation in your space — do you appear? We measure it. Then fix it.",
+                  tag: "GEO Audit",
+                },
+                {
+                  icon: (
+                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                    </svg>
+                  ),
+                  title: "Growth Simulation",
+                  body: "An interactive model built specifically for your business. Toggle improvements and watch the revenue math change in real time. No guesswork.",
+                  tag: "Growth Simulator",
+                },
+              ].map((item, i) => (
+                <div
+                  key={item.title}
+                  className={`animate-fade-in-up animate-delay-${(i + 1) * 100} group p-8 lg:p-10 rounded-2xl transition-all duration-300`}
+                  style={{
+                    background: "rgba(255,255,255,0.025)",
+                    border: "1px solid rgba(255,255,255,0.07)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(212,168,67,0.2)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.07)";
+                  }}
+                >
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                    style={{ background: "rgba(212,168,67,0.08)", color: "#D4A843" }}
+                  >
+                    {item.icon}
+                  </div>
+                  <div
+                    className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 tracking-wide"
+                    style={{
+                      background: "rgba(212,168,67,0.08)",
+                      color: "rgba(212,168,67,0.8)",
+                      fontFamily: "var(--font-sans)",
+                    }}
+                  >
+                    {item.tag}
+                  </div>
+                  <h3
+                    className="text-2xl text-white mb-4"
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className="text-base leading-relaxed"
+                    style={{ color: "rgba(148,163,184,0.7)", fontFamily: "var(--font-sans)" }}
+                  >
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 6 — HOW IT WORKS
+            Three-step process. Clean on white.
+        ═══════════════════════════════════════════════ */}
+        <section className="bg-light py-24 sm:py-32 lg:py-40">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="animate-fade-in-up text-3xl sm:text-4xl lg:text-5xl font-black text-navy text-center mb-4">
-              How It Works
-            </h2>
-            <p className="animate-fade-in-up animate-delay-100 text-slate text-center text-lg mb-16 max-w-2xl mx-auto">
-              Three steps. No complexity. No long-term contracts.
-            </p>
+
+            <div className="animate-fade-in-up text-center mb-20">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12" style={{ background: "rgba(27,42,74,0.3)" }} />
+                <span
+                  className="text-xs font-semibold tracking-[0.25em] uppercase"
+                  style={{ color: "rgba(27,42,74,0.5)", fontFamily: "var(--font-sans)" }}
+                >
+                  The Process
+                </span>
+                <div className="h-px w-12" style={{ background: "rgba(27,42,74,0.3)" }} />
+              </div>
+              <h2
+                className="text-4xl sm:text-5xl lg:text-6xl text-navy leading-tight"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+              >
+                Three steps.
+                <br />
+                No complexity. No contract.
+              </h2>
+            </div>
 
             <div className="space-y-16 lg:space-y-20">
-              {/* Step 1 */}
-              <div className="animate-fade-in-up animate-delay-100 flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center">
-                    <span className="text-navy font-black text-2xl sm:text-3xl">1</span>
+              {[
+                {
+                  num: "01",
+                  tag: "Free",
+                  title: "We reveal your blind spots.",
+                  body: "In 48 hours, you receive a competitive intelligence report showing exactly where you stand — who your real threats are, where your revenue is leaking, what AI opportunities you're missing, and what your competitors can't yet see. Consulting firms charge $5,000–$25,000 for this analysis. You get it free.",
+                  fine: "48-hour delivery. No credit card. No sales call. No obligation.",
+                },
+                {
+                  num: "02",
+                  tag: "Interactive",
+                  title: "You see your numbers.",
+                  body: "We build you an interactive growth model specific to your business. Toggle individual improvements and watch how each one impacts your revenue, costs, and market position. Not generic projections. Your data. Your market. Your opportunity.",
+                  fine: "Scenario modeling. Real projections. Built for your business.",
+                },
+                {
+                  num: "03",
+                  tag: "Ongoing",
+                  title: "We build your edge.",
+                  body: "We deploy the intelligence systems that keep you ahead — continuous competitor monitoring, AI-powered operational improvements, and strategic insights delivered on your schedule. You stop guessing. You start knowing. Every decision backed by data your competitors don't have.",
+                  fine: "Continuous monitoring. Measurable results. Your system, not a subscription.",
+                },
+              ].map((step) => (
+                <div
+                  key={step.num}
+                  className="animate-fade-in-up flex flex-col lg:flex-row items-start gap-8 lg:gap-12"
+                >
+                  <div className="flex-shrink-0">
+                    <div
+                      className="w-20 h-20 rounded-2xl flex items-center justify-center"
+                      style={{
+                        background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                      }}
+                    >
+                      <span
+                        className="text-3xl font-black"
+                        style={{ color: "#1B2A4A", fontFamily: "var(--font-display)" }}
+                      >
+                        {step.num}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <h3
+                        className="text-2xl sm:text-3xl text-navy"
+                        style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+                      >
+                        {step.title}
+                      </h3>
+                      {step.tag === "Free" && (
+                        <span
+                          className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                          style={{
+                            background: "rgba(212,168,67,0.12)",
+                            color: "#B08A2E",
+                            fontFamily: "var(--font-sans)",
+                          }}
+                        >
+                          {step.tag}
+                        </span>
+                      )}
+                    </div>
+                    <p
+                      className="text-lg leading-relaxed mb-3"
+                      style={{ color: "#64748B", fontFamily: "var(--font-sans)" }}
+                    >
+                      {step.body}
+                    </p>
+                    <p
+                      className="text-sm"
+                      style={{ color: "#94A3B8", fontFamily: "var(--font-sans)" }}
+                    >
+                      {step.fine}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-navy">
-                      We Reveal Your Blind Spots
-                    </h3>
-                    <span className="px-3 py-1 bg-gold/10 text-gold-dark text-xs font-bold rounded-full uppercase tracking-wide">
-                      Free
-                    </span>
-                  </div>
-                  <p className="text-slate text-lg leading-relaxed mb-3">
-                    In 48 hours, you receive a competitive intelligence report
-                    showing exactly where you stand in your market, who your
-                    real threats are, where your revenue is leaking, and what
-                    opportunities you&apos;re missing. Consulting firms charge
-                    $5,000+ for this analysis. You get it free.
-                  </p>
-                  <p className="text-muted text-sm">
-                    48-hour delivery. No obligation. No sales pitch attached.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="animate-fade-in-up animate-delay-200 flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center">
-                    <span className="text-navy font-black text-2xl sm:text-3xl">2</span>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-navy mb-2">
-                    You See Your Numbers
-                  </h3>
-                  <p className="text-slate text-lg leading-relaxed mb-3">
-                    We build you an interactive growth model specific to your
-                    business. Toggle individual improvements and watch how each
-                    one impacts your revenue, costs, and competitive position.
-                    No guesswork. No generic projections. Your data. Your market.
-                    Your numbers.
-                  </p>
-                  <p className="text-muted text-sm">
-                    Interactive dashboard. Scenario modeling. Real projections
-                    based on your business.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="animate-fade-in-up animate-delay-300 flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center">
-                    <span className="text-navy font-black text-2xl sm:text-3xl">3</span>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-navy mb-2">
-                    We Build Your Competitive Edge
-                  </h3>
-                  <p className="text-slate text-lg leading-relaxed mb-3">
-                    We deploy the intelligence systems that keep you ahead —
-                    continuous competitor monitoring, AI-powered operational
-                    improvements, and strategic insights delivered on your
-                    schedule. You stop guessing and start knowing. Every
-                    decision backed by data your competitors don&apos;t have.
-                  </p>
-                  <p className="text-muted text-sm">
-                    Ongoing intelligence. Continuous optimization. Measurable
-                    results.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
 
             <div className="text-center mt-16">
               <CTAButton
                 href="/free-report"
                 size="lg"
-                className="!text-navy"
                 micro=""
               >
-                Start With Your Free Report
+                Start with Your Free Report
               </CTAButton>
-              <p className="text-muted text-sm mt-4">
-                Step 1 is free. No credit card required.
+              <p
+                className="mt-4 text-sm"
+                style={{ color: "#94A3B8", fontFamily: "var(--font-sans)" }}
+              >
+                Step 1 is free. Always.
               </p>
             </div>
           </div>
         </section>
 
-        {/* ───────────────────────────────────────────────
-            SECTION 6: URGENCY / FINAL CTA
-        ─────────────────────────────────────────────── */}
-        <section className="relative bg-navy py-20 sm:py-28 lg:py-32 overflow-hidden">
-          {/* Background glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold/5 blur-3xl" />
+        {/* ═══════════════════════════════════════════════
+            SECTION 7 — FINAL CTA
+            Deep dark. Gold glow. Maximum authority.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="relative py-28 sm:py-36 lg:py-44 overflow-hidden"
+          style={{ background: "linear-gradient(160deg, #070E1C 0%, #0F1A2E 50%, #1B2A4A 100%)" }}
+        >
+          {/* Gold radial glow behind CTA */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(212,168,67,0.07) 0%, transparent 65%)",
+            }}
+          />
+
+          {/* Grid texture */}
+          <div
+            className="absolute inset-0 opacity-[0.025] pointer-events-none"
+            style={{
+              backgroundImage: `linear-gradient(rgba(212,168,67,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,168,67,1) 1px, transparent 1px)`,
+              backgroundSize: "80px 80px",
+            }}
+          />
 
           <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="animate-fade-in-up text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
-              Every day you wait, the other businesses in your market get closer
-              to{" "}
-              <span className="text-gradient">finding this first.</span>
+
+            {/* Eyebrow */}
+            <div className="animate-fade-in-up flex items-center justify-center gap-3 mb-10">
+              <div className="h-px w-12 bg-gold/40" />
+              <span
+                className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                The Clock Is Running
+              </span>
+              <div className="h-px w-12 bg-gold/40" />
+            </div>
+
+            <h2
+              className="animate-fade-in-up animate-delay-100 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight mb-8"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+            >
+              Every day you wait,
+              <br />
+              your competitor is one day closer to{" "}
+              <em
+                className="not-italic"
+                style={{
+                  background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                finding this first.
+              </em>
             </h2>
 
-            <p className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl text-white/70 mb-12 max-w-3xl mx-auto leading-relaxed">
-              The free intelligence report takes 48 hours. Zero cost, zero
-              commitment, zero risk.
+            <p
+              className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl leading-relaxed mb-14 max-w-2xl mx-auto"
+              style={{ color: "rgba(248,249,250,0.55)", fontFamily: "var(--font-sans)" }}
+            >
+              The free intelligence report takes 48 hours.
+              Zero cost. Zero commitment. Zero risk.
             </p>
 
             <div className="animate-fade-in-up animate-delay-300">
               <CTAButton
                 href="/free-report"
                 size="xl"
-                micro="287 businesses in South Florida requested their report this quarter. Is your competitor one of them?"
+                micro="287 businesses in South Florida requested their report this quarter."
               >
                 Claim Your Free Competitive Intelligence Report
               </CTAButton>
             </div>
+
+            {/* Trust signals */}
+            <div
+              className="animate-fade-in-up animate-delay-400 flex flex-wrap justify-center gap-x-10 gap-y-4 mt-12"
+            >
+              {[
+                "No credit card required",
+                "No sales call attached",
+                "Delivered in 48 hours",
+              ].map((signal) => (
+                <div
+                  key={signal}
+                  className="flex items-center gap-2"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    style={{ color: "rgba(212,168,67,0.6)" }}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  <span
+                    className="text-sm"
+                    style={{ color: "rgba(148,163,184,0.6)", fontFamily: "var(--font-sans)" }}
+                  >
+                    {signal}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
+
       </main>
 
       <Footer />

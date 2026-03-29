@@ -5,6 +5,7 @@
   --color-foreground: var(--foreground);
   --color-navy: #1B2A4A;
   --color-navy-dark: #0F1A2E;
+  --color-navy-deeper: #070E1C;
   --color-navy-light: #2E4A7A;
   --color-gold: #D4A843;
   --color-gold-light: #E8C97A;
@@ -12,8 +13,11 @@
   --color-slate: #64748B;
   --color-light: #F8F9FA;
   --color-muted: #94A3B8;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Body: Plus Jakarta Sans — modern, refined */
+  --font-sans: var(--font-sans);
+  --font-mono: monospace;
+  /* Display: Cormorant Garamond — authority, luxury, consulting gravitas */
+  --font-display: var(--font-display);
 }
 
 :root {

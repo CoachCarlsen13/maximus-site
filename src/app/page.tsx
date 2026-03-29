@@ -58,8 +58,8 @@ const SYSTEM_PILLARS = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375" />
       </svg>
     ),
-    label: "Hallucination-Free",
-    description: "Every data point traced to a real source. Every competitor verified against live web data. If it can't be confirmed, it doesn't ship.",
+    label: "Built to Eliminate Hallucinations",
+    description: "Multi-layer verification on every data point. Source-traced intelligence. Quality-gated outputs. If we can't verify it, you won't see it.",
   },
   {
     id: "delivery",
@@ -170,17 +170,39 @@ export default function Home() {
 
             {/* Subheadline */}
             <p
-              className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl leading-relaxed mb-12 max-w-3xl"
+              className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl leading-relaxed mb-8 max-w-3xl"
               style={{
                 color: "rgba(248,249,250,0.6)",
                 fontFamily: "var(--font-sans)",
               }}
             >
-              Self-learning. Self-improving. Self-governing.{" "}
-              <span style={{ color: "rgba(248,249,250,0.85)" }}>
-                The AI system that gets smarter while your competition sleeps.
+              While competitors race to make AI faster and cheaper, we built it to be{" "}
+              <span style={{ color: "rgba(248,249,250,0.9)" }}>trustworthy</span>
+              {" "}— and then we made it smarter.{" "}
+              <span style={{ color: "rgba(248,249,250,0.75)" }}>
+                Our system is self-learning, self-improving, and self-optimizing. Every interaction makes it more intelligent, more accurate, and more valuable for your business. That&apos;s not a promise. That&apos;s how it&apos;s engineered.
               </span>
             </p>
+
+            {/* Free Report value anchor */}
+            <div
+              className="animate-fade-in-up animate-delay-250 mb-10 p-5 rounded-xl max-w-2xl"
+              style={{
+                background: "rgba(212,168,67,0.06)",
+                border: "1px solid rgba(212,168,67,0.18)",
+              }}
+            >
+              <p
+                className="text-base leading-relaxed"
+                style={{ color: "rgba(248,249,250,0.75)", fontFamily: "var(--font-sans)" }}
+              >
+                Consulting firms charge{" "}
+                <span style={{ color: "#D4A843", fontWeight: 600 }}>$5,000 to $50,000</span>
+                {" "}for competitive intelligence like this. We deliver your first report{" "}
+                <span style={{ color: "#D4A843", fontWeight: 600 }}>FREE</span>
+                {" "}— so you can experience the competitive advantage this level of business intelligence creates. We are convinced that once you experience Maximus AI&apos;s quality, accuracy, and consistency, you will never want to go without it again.
+              </p>
+            </div>
 
             {/* CTA row */}
             <div className="animate-fade-in-up animate-delay-300 flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-16">
@@ -189,7 +211,7 @@ export default function Home() {
                 size="xl"
                 micro="No credit card. No sales call. Just intelligence."
               >
-                Get Your Free Competitive Report
+                $5,000 Business Intelligence Report — FREE
               </CTAButton>
               <a
                 href="/free-report"
@@ -489,6 +511,254 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════════════════════════════════
+            SECTION 3B — SMB TARGET MARKET MESSAGING
+            Who this was built for. Enterprise parity for SMBs.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-20 sm:py-28 overflow-hidden"
+          style={{ background: "#070E1C" }}
+        >
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="animate-fade-in-up flex items-center justify-center gap-3 mb-8">
+              <div className="h-px w-12 bg-gold/40" />
+              <span
+                className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Built For The 99%
+              </span>
+              <div className="h-px w-12 bg-gold/40" />
+            </div>
+            <h2
+              className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-8"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+            >
+              Enterprise companies spend{" "}
+              <em
+                className="not-italic"
+                style={{
+                  background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                $500 billion annually
+              </em>
+              {" "}to access this level of intelligence.
+            </h2>
+            <p
+              className="animate-fade-in-up animate-delay-100 text-xl sm:text-2xl leading-relaxed mb-10 max-w-4xl mx-auto"
+              style={{ color: "rgba(148,163,184,0.75)", fontFamily: "var(--font-sans)" }}
+            >
+              That&apos;s why they dominate. Until now, this caliber of analysis was reserved for businesses with the largest budgets.
+            </p>
+            <p
+              className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl leading-relaxed max-w-4xl mx-auto"
+              style={{ color: "rgba(248,249,250,0.85)", fontFamily: "var(--font-sans)" }}
+            >
+              That&apos;s why we built Maximus AI — to serve the{" "}
+              <span style={{ color: "#D4A843" }}>SMBs, executives, entrepreneurs, solopreneurs, consultants, agencies, professional service providers, healthcare providers, legal firms, and home services businesses</span>
+              {" "}who have been left in the dark.{" "}
+              <strong style={{ color: "white" }}>Until now.</strong>
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 3C — WHY WE CHOSE CLAUDE / ANTHROPIC
+            Trust foundation. The most principled AI on the planet.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-20 sm:py-28 overflow-hidden"
+          style={{ background: "linear-gradient(180deg, #0A1120 0%, #0F1A2E 100%)" }}
+        >
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="animate-fade-in-up flex items-center justify-center gap-3 mb-8 text-center">
+              <div className="h-px w-12 bg-gold/40" />
+              <span
+                className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                The Foundation
+              </span>
+              <div className="h-px w-12 bg-gold/40" />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2
+                  className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-8"
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+                >
+                  We chose Claude because it&apos;s the most capable AI on the planet.
+                  <br />
+                  <em
+                    className="not-italic"
+                    style={{
+                      background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    And the most principled.
+                  </em>
+                </h2>
+              </div>
+              <div className="space-y-5">
+                {[
+                  "When others cut corners to move fast, Anthropic built Constitutional AI — a framework that encodes ethics directly into the model architecture.",
+                  "When the pressure came to weaponize their models, they didn't blink. Anthropic declined government contracts for autonomous weapons systems.",
+                  "That principled foundation is what Maximus is built on. The most powerful AND the most trustworthy.",
+                  "Your business intelligence is generated by the same AI that refused to compromise its integrity when billions were on the table.",
+                ].map((point, i) => (
+                  <div
+                    key={i}
+                    className="animate-fade-in-up flex items-start gap-4 p-5 rounded-xl"
+                    style={{
+                      background: "rgba(212,168,67,0.04)",
+                      border: "1px solid rgba(212,168,67,0.1)",
+                    }}
+                  >
+                    <div
+                      className="flex-shrink-0 w-5 h-5 rounded-full mt-0.5 flex items-center justify-center"
+                      style={{ background: "rgba(212,168,67,0.2)" }}
+                    >
+                      <svg className="w-3 h-3" style={{ color: "#D4A843" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                    </div>
+                    <p
+                      className="text-base leading-relaxed"
+                      style={{ color: "rgba(248,249,250,0.75)", fontFamily: "var(--font-sans)" }}
+                    >
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 3D — DUAL-CONSTITUTION GOVERNANCE
+            Prominent. Not buried. The ethical moat.
+        ═══════════════════════════════════════════════ */}
+        <section
+          className="py-20 sm:py-28 overflow-hidden"
+          style={{ background: "#070E1C" }}
+        >
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="animate-fade-in-up text-center mb-16">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 bg-gold/40" />
+                <span
+                  className="text-gold/60 text-xs font-semibold tracking-[0.25em] uppercase"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  Governance
+                </span>
+                <div className="h-px w-12 bg-gold/40" />
+              </div>
+              <h2
+                className="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+              >
+                Two constitutions.
+                <br />
+                <em
+                  className="not-italic"
+                  style={{
+                    background: "linear-gradient(135deg, #D4A843 0%, #E8C97A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Zero compromise.
+                </em>
+              </h2>
+              <p
+                className="text-xl max-w-2xl mx-auto leading-relaxed"
+                style={{ color: "rgba(148,163,184,0.7)", fontFamily: "var(--font-sans)" }}
+              >
+                Every Maximus AI system operates under two non-negotiable governance frameworks simultaneously.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              {[
+                {
+                  title: "The Anthropic Constitution",
+                  subtitle: "Model-level. Structural. Cannot be overridden.",
+                  body: "The AI is honest, ethical, and never causes harm — the same foundation that led Anthropic to refuse government contracts for autonomous weapons. This is baked into the model architecture, not layered on top.",
+                  color: "#3B7DD8",
+                },
+                {
+                  title: "The Maximus Constitution",
+                  subtitle: "8 rules. Zero tolerance. Absolute operational integrity.",
+                  body: "No deception. No hallucination concealment. No dark patterns. No conflicts of interest. Every output must pass an integrity check before it reaches you. Our AI agents operate under the same ethical standards we hold ourselves to.",
+                  color: "#D4A843",
+                },
+              ].map((doc, i) => (
+                <div
+                  key={i}
+                  className="animate-fade-in-up p-8 rounded-2xl"
+                  style={{
+                    background: "rgba(255,255,255,0.025)",
+                    border: `1px solid ${doc.color}30`,
+                  }}
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                    style={{ background: `${doc.color}18` }}
+                  >
+                    <svg className="w-6 h-6" style={{ color: doc.color }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 10.5c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.634-.357-3.182-.995-4.578A11.956 11.956 0 0112 2.714z" />
+                    </svg>
+                  </div>
+                  <h3
+                    className="text-2xl text-white mb-2"
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+                  >
+                    {doc.title}
+                  </h3>
+                  <p
+                    className="text-xs font-semibold uppercase tracking-widest mb-4"
+                    style={{ color: doc.color, fontFamily: "var(--font-sans)" }}
+                  >
+                    {doc.subtitle}
+                  </p>
+                  <p
+                    className="text-base leading-relaxed"
+                    style={{ color: "rgba(148,163,184,0.75)", fontFamily: "var(--font-sans)" }}
+                  >
+                    {doc.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div
+              className="animate-fade-in-up p-6 rounded-xl text-center"
+              style={{
+                background: "rgba(212,168,67,0.04)",
+                border: "1px solid rgba(212,168,67,0.15)",
+              }}
+            >
+              <p
+                className="text-lg leading-relaxed"
+                style={{ color: "rgba(248,249,250,0.8)", fontFamily: "var(--font-sans)" }}
+              >
+                <strong style={{ color: "#D4A843" }}>Our competitors cannot tell you what rules their AI follows.</strong>
+                {" "}We can show you two documents that prove it. This is the only dual-constitution AI governance framework in the market.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
             SECTION 4 — PROOF
             Stats on dark. Authority numbers.
         ═══════════════════════════════════════════════ */}
@@ -520,7 +790,7 @@ export default function Home() {
                 style={{ color: "rgba(148,163,184,0.6)", fontFamily: "var(--font-sans)" }}
               >
                 Businesses using AI-powered competitive intelligence
-                are outperforming peers across every metric.
+                are consistently outperforming peers who don&apos;t.
               </p>
             </div>
 
@@ -631,7 +901,7 @@ export default function Home() {
                     </svg>
                   ),
                   title: "Revenue Recovery",
-                  body: "Where you&apos;re bleeding money on manual tasks AI handles for pennies — quantified, prioritized, and ready to fix in 30 days.",
+                  body: "Revenue Recovery — Where you are spending thousands on manual tasks AI handles at a fraction of the cost — quantified, prioritized, and mapped to a clear implementation plan.",
                   tag: "AI Operations Audit",
                 },
                 {
@@ -819,7 +1089,7 @@ export default function Home() {
                 size="lg"
                 micro=""
               >
-                Start with Your Free Report
+                Start Free — $5,000 Business Intelligence Report
               </CTAButton>
               <p
                 className="mt-4 text-sm"
@@ -904,7 +1174,7 @@ export default function Home() {
                 size="xl"
                 micro="287 businesses in South Florida requested their report this quarter."
               >
-                Claim Your Free Competitive Intelligence Report
+                Claim Your $5,000 Business Intelligence Report — FREE
               </CTAButton>
             </div>
 

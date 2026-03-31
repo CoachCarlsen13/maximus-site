@@ -180,7 +180,7 @@ export default function Home() {
               <span style={{ color: "rgba(248,249,250,0.9)" }}>trustworthy</span>
               {" "}— and then we made it smarter.{" "}
               <span style={{ color: "rgba(248,249,250,0.75)" }}>
-                Our system is self-learning, self-improving, and self-optimizing. Every interaction makes it more intelligent, more accurate, and more valuable for your business. That&apos;s not a promise. That&apos;s how it&apos;s engineered.
+                Our system is self-learning, self-improving, and self-optimizing. Every interaction makes it more intelligent, more accurate, and more valuable for your business. Thats not a promise. Thats how its engineered.
               </span>
             </p>
 
@@ -200,7 +200,7 @@ export default function Home() {
                 <span style={{ color: "#D4A843", fontWeight: 600 }}>$5,000 to $50,000</span>
                 {" "}for competitive intelligence like this. We deliver your first report{" "}
                 <span style={{ color: "#D4A843", fontWeight: 600 }}>FREE</span>
-                {" "}— so you can experience the competitive advantage this level of business intelligence creates. We are convinced that once you experience Maximus AI&apos;s quality, accuracy, and consistency, you will never want to go without it again.
+                {" "}— so you can experience the competitive advantage this level of business intelligence creates for your business. We are convinced that once you experience Maximus AI world-class quality, accuracy, and consistency of business intelligence, you will never want to go without it again.
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function Home() {
                 size="xl"
                 micro="No credit card. No sales call. Just intelligence."
               >
-                $5,000 Business Intelligence Report — FREE
+                $5,000 Business Intelligence Report... FREE
               </CTAButton>
               <a
                 href="/free-report"
@@ -545,20 +545,20 @@ export default function Home() {
               >
                 $500 billion annually
               </em>
-              {" "}to access this level of intelligence.
+              {" "}to access this level of business intelligence and strategy.
             </h2>
             <p
               className="animate-fade-in-up animate-delay-100 text-xl sm:text-2xl leading-relaxed mb-10 max-w-4xl mx-auto"
               style={{ color: "rgba(148,163,184,0.75)", fontFamily: "var(--font-sans)" }}
             >
-              That&apos;s why they dominate. Until now, this caliber of analysis was reserved for businesses with the largest budgets.
+              Thats why they dominate. Until now, this caliber of analysis and insight was reserved for businesses with the largest budgets.
             </p>
             <p
               className="animate-fade-in-up animate-delay-200 text-xl sm:text-2xl leading-relaxed max-w-4xl mx-auto"
               style={{ color: "rgba(248,249,250,0.85)", fontFamily: "var(--font-sans)" }}
             >
-              That&apos;s why we built Maximus AI — to serve the{" "}
-              <span style={{ color: "#D4A843" }}>SMBs, executives, entrepreneurs, solopreneurs, consultants, agencies, professional service providers, healthcare providers, legal firms, and home services businesses</span>
+              Thats why we built Maximus AI Strategic Advisory — to serve the{" "}
+              <span style={{ color: "#D4A843" }}>SMBs, the executives, entrepreneurs, solopreneurs, online coaches, consultants, agencies, professional service providers, healthcare providers, legal service providers, and home services businesses</span>
               {" "}who have been left in the dark.{" "}
               <strong style={{ color: "white" }}>Until now.</strong>
             </p>
@@ -590,8 +590,7 @@ export default function Home() {
                   className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-8"
                   style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
                 >
-                  We chose Claude because it&apos;s the most capable AI on the planet.
-                  <br />
+                  We chose Claude because it is the most capable AI on the planet{" "}
                   <em
                     className="not-italic"
                     style={{
@@ -601,41 +600,23 @@ export default function Home() {
                       backgroundClip: "text",
                     }}
                   >
-                    And the most principled.
+                    — and the most principled.
                   </em>
                 </h2>
               </div>
-              <div className="space-y-5">
-                {[
-                  "When others cut corners to move fast, Anthropic built Constitutional AI — a framework that encodes ethics directly into the model architecture.",
-                  "When the pressure came to weaponize their models, they didn't blink. Anthropic declined government contracts for autonomous weapons systems.",
-                  "That principled foundation is what Maximus is built on. The most powerful AND the most trustworthy.",
-                  "Your business intelligence is generated by the same AI that refused to compromise its integrity when billions were on the table.",
-                ].map((point, i) => (
-                  <div
-                    key={i}
-                    className="animate-fade-in-up flex items-start gap-4 p-5 rounded-xl"
-                    style={{
-                      background: "rgba(212,168,67,0.04)",
-                      border: "1px solid rgba(212,168,67,0.1)",
-                    }}
-                  >
-                    <div
-                      className="flex-shrink-0 w-5 h-5 rounded-full mt-0.5 flex items-center justify-center"
-                      style={{ background: "rgba(212,168,67,0.2)" }}
-                    >
-                      <svg className="w-3 h-3" style={{ color: "#D4A843" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                    </div>
-                    <p
-                      className="text-base leading-relaxed"
-                      style={{ color: "rgba(248,249,250,0.75)", fontFamily: "var(--font-sans)" }}
-                    >
-                      {point}
-                    </p>
-                  </div>
-                ))}
+              <div
+                className="animate-fade-in-up p-6 rounded-xl"
+                style={{
+                  background: "rgba(212,168,67,0.04)",
+                  border: "1px solid rgba(212,168,67,0.1)",
+                }}
+              >
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: "rgba(248,249,250,0.75)", fontFamily: "var(--font-sans)" }}
+                >
+                  When others cut corners to move fast, Anthropic built Constitutional AI. When the pressure came to weaponize their models, they didnt blink. Thats the foundation Maximus is built on. The most powerful AND the most trustworthy.
+                </p>
               </div>
             </div>
           </div>
@@ -683,7 +664,7 @@ export default function Home() {
                 className="text-xl max-w-2xl mx-auto leading-relaxed"
                 style={{ color: "rgba(148,163,184,0.7)", fontFamily: "var(--font-sans)" }}
               >
-                Every Maximus AI system operates under two non-negotiable governance frameworks simultaneously.
+                Every Maximus AI system operates under two constitutions.
               </p>
             </div>
 
@@ -692,13 +673,13 @@ export default function Home() {
                 {
                   title: "The Anthropic Constitution",
                   subtitle: "Model-level. Structural. Cannot be overridden.",
-                  body: "The AI is honest, ethical, and never causes harm — the same foundation that led Anthropic to refuse government contracts for autonomous weapons. This is baked into the model architecture, not layered on top.",
+                  body: "The Anthropic Constitution ensures the AI is honest, ethical, and never causes harm — the same foundation that led Anthropic to refuse government contracts for autonomous weapons.",
                   color: "#3B7DD8",
                 },
                 {
                   title: "The Maximus Constitution",
                   subtitle: "8 rules. Zero tolerance. Absolute operational integrity.",
-                  body: "No deception. No hallucination concealment. No dark patterns. No conflicts of interest. Every output must pass an integrity check before it reaches you. Our AI agents operate under the same ethical standards we hold ourselves to.",
+                  body: "The Maximus Constitution ensures your AI agents deliver with absolute operational integrity — zero tolerance for deception, hallucination, or concealment.",
                   color: "#D4A843",
                 },
               ].map((doc, i) => (
@@ -751,8 +732,8 @@ export default function Home() {
                 className="text-lg leading-relaxed"
                 style={{ color: "rgba(248,249,250,0.8)", fontFamily: "var(--font-sans)" }}
               >
-                <strong style={{ color: "#D4A843" }}>Our competitors cannot tell you what rules their AI follows.</strong>
-                {" "}We can show you two documents that prove it. This is the only dual-constitution AI governance framework in the market.
+                Together they create the only dual-constitution AI governance framework in the market.{" "}
+                <strong style={{ color: "#D4A843" }}>Our competitors cannot tell you what rules their AI follows. We can show you two documents that prove it.</strong>
               </p>
             </div>
           </div>
@@ -1089,7 +1070,7 @@ export default function Home() {
                 size="lg"
                 micro=""
               >
-                Start Free — $5,000 Business Intelligence Report
+                $5,000 Business Intelligence Report... FREE
               </CTAButton>
               <p
                 className="mt-4 text-sm"
@@ -1174,7 +1155,7 @@ export default function Home() {
                 size="xl"
                 micro="287 businesses in South Florida requested their report this quarter."
               >
-                Claim Your $5,000 Business Intelligence Report — FREE
+                $5,000 Business Intelligence Report... FREE
               </CTAButton>
             </div>
 

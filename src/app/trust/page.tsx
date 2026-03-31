@@ -356,7 +356,7 @@ export default function TrustPage() {
               size="xl"
               micro="See what your competitive position looks like before deciding anything else."
             >
-              Start With Your Free Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>
@@ -394,7 +394,7 @@ export default function TrustPage() {
               {[
                 { href: "/about", label: "About Joel Wynn", desc: "Why Maximus was built the way it was" },
                 { href: "/services", label: "Our Services", desc: "How we deliver intelligence" },
-                { href: "/free-report", label: "Get Started Free", desc: "Your competitive report in 48 hours" },
+                { href: "/free-report", label: "$5,000 Business Intelligence Report... FREE", desc: "Your competitive report in 48 hours" },
               ].map((l) => (
                 <Link
                   key={l.href}

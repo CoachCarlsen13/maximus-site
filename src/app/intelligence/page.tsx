@@ -144,7 +144,7 @@ export default function IntelligencePage() {
                 size="xl"
                 micro="48-hour delivery. No obligation."
               >
-                Request Your Intelligence Brief
+                $5,000 Business Intelligence Report... FREE
               </CTAButton>
             </div>
           </div>
@@ -249,7 +249,7 @@ export default function IntelligencePage() {
                   ))}
                 </ul>
                 <CTAButton href="/free-report" size="base">
-                  Request Your Intelligence Brief
+                  $5,000 Business Intelligence Report... FREE
                 </CTAButton>
               </div>
 
@@ -334,7 +334,7 @@ export default function IntelligencePage() {
                 className="!text-navy"
                 micro="48-hour delivery. No credit card. No obligation."
               >
-                Request Your Intelligence Brief
+                $5,000 Business Intelligence Report... FREE
               </CTAButton>
             </div>
           </div>

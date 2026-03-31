@@ -28,7 +28,7 @@ export default function SouthFloridaPage() {
               delivered to South Florida&apos;s most ambitious small and mid-sized businesses.
             </p>
             <CTAButton href="/free-report" size="xl" micro="Free. 48-hour delivery. South Florida market intel.">
-              Get Your Free South Florida Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>
@@ -72,7 +72,7 @@ export default function SouthFloridaPage() {
         <section className="bg-navy py-16 text-center">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-6">South Florida&apos;s most ambitious businesses start here.</h2>
-            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">Get Your Free Report</CTAButton>
+            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">$5,000 Business Intelligence Report... FREE</CTAButton>
           </div>
         </section>
       </main>

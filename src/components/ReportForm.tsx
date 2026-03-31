@@ -26,11 +26,39 @@ export default function ReportForm() {
     e.preventDefault();
     setSubmitting(true);
 
-    // TODO: Connect to Zapier/webhook endpoint
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    try {
+      const apiBase =
+        process.env.NEXT_PUBLIC_API_URL ||
+        "https://command-center-production-ffc0.up.railway.app";
 
-    setSubmitting(false);
-    setSubmitted(true);
+      const res = await fetch(`${apiBase}/api/leads/trojan-horse`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          businessName: form.businessName,
+          websiteUrl: form.website,
+          contactName: form.name,
+          email: form.email,
+          phone: form.phone || undefined,
+          challenge: form.challenge || undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body?.error || `HTTP ${res.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      // Surface error to user instead of silent fail
+      alert(
+        "Something went wrong submitting your request. Please try again or email us directly."
+      );
+      console.error("ReportForm submit error:", err);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -190,7 +218,7 @@ export default function ReportForm() {
         disabled={submitting}
         className="w-full btn-gold rounded-xl px-8 py-4 text-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {submitting ? "Sending..." : "Send Me My Free Intelligence Report"}
+        {submitting ? "Sending..." : "$5,000 Business Intelligence Report... FREE"}
       </button>
 
       {/* Trust Elements */}

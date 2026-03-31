@@ -232,7 +232,7 @@ export default function AboutPage() {
               No commitment.
             </p>
             <CTAButton href="/free-report" size="xl" micro="No sales call. No credit card. Just your report.">
-              Claim Your Free Competitive Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>

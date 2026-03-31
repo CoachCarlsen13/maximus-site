@@ -99,7 +99,7 @@ export default function Footer() {
               href="/free-report"
               className="inline-block btn-gold px-5 py-2.5 rounded-lg text-sm"
             >
-              Claim Your Free Report
+              $5,000 Business Intelligence Report... FREE
             </Link>
           </div>
         </div>

@@ -131,7 +131,7 @@ export default function BlogPage() {
               most relevant insights for your market and industry.
             </p>
             <CTAButton href="/free-report" size="lg" micro="Free report. No sales call.">
-              Get Your Free Competitive Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>

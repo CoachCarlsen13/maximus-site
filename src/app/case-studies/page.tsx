@@ -128,7 +128,7 @@ export default function CaseStudiesPage() {
               case study — run on your business, delivered in 48 hours.
             </p>
             <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">
-              Claim Your Free Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>

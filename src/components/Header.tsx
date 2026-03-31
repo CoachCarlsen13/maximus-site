@@ -50,7 +50,7 @@ export default function Header() {
               href="/free-report"
               className="ml-4 btn-gold px-5 py-2.5 rounded-lg text-sm"
             >
-              Get Your Free Report
+              $5,000 Business Intelligence Report... FREE
             </Link>
           </nav>
 
@@ -88,7 +88,7 @@ export default function Header() {
               className="block mt-3 btn-gold px-5 py-3 rounded-lg text-sm text-center"
               onClick={() => setMobileOpen(false)}
             >
-              Get Your Free Report
+              $5,000 Business Intelligence Report... FREE
             </Link>
           </nav>
         )}

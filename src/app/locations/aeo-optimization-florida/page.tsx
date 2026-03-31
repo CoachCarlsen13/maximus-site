@@ -30,7 +30,7 @@ export default function AEOFloridaPage() {
               discovery channel in history.
             </p>
             <CTAButton href="/free-report" size="xl" micro="Free AI visibility audit included in your report.">
-              Get Your Free AEO Audit
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>
@@ -91,7 +91,7 @@ export default function AEOFloridaPage() {
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-4">Are you invisible to AI search?</h2>
             <p className="text-white/70 mb-8">Find out in 48 hours. Free competitive intelligence report includes your AI visibility score.</p>
-            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">Get Your Free AEO Audit</CTAButton>
+            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">$5,000 Business Intelligence Report... FREE</CTAButton>
           </div>
         </section>
       </main>

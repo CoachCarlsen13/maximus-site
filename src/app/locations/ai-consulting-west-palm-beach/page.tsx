@@ -28,7 +28,7 @@ export default function WPBPage() {
               Know your market before your competitors do.
             </p>
             <CTAButton href="/free-report" size="xl" micro="Free. 48-hour delivery. WPB market intel.">
-              Get Your Free WPB Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>
@@ -54,7 +54,7 @@ export default function WPBPage() {
         <section className="bg-navy py-16 text-center">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-6">Dominate your WPB market — start free.</h2>
-            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">Get Your Free Report</CTAButton>
+            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">$5,000 Business Intelligence Report... FREE</CTAButton>
           </div>
         </section>
       </main>

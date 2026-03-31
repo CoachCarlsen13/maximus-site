@@ -7,9 +7,9 @@ import CTAButton from "../../../components/CTAButton";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Consulting Jupiter FL — Maximus AI Strategic Advisory",
+  title: "AI Consulting Jupiter FL — Maximus AI Strategic Advisory | Free Report",
   description:
-    "AI consulting for Jupiter, FL businesses. Competitive intelligence, AI visibility audits, and strategic advisory for medical spas, dental practices, and professional services in Jupiter Florida.",
+    "AI consulting in Jupiter, FL for small and mid-size businesses. Free competitive intelligence report. McKinsey-grade strategy at SMB pricing. Maximus AI Strategic Advisory.",
   keywords: ["AI consulting Jupiter FL", "AI consulting Jupiter Florida", "competitive intelligence Jupiter FL", "AI strategy Jupiter", "business intelligence Jupiter Florida"],
   openGraph: {
     title: "AI Consulting in Jupiter, FL — Maximus AI Strategic Advisory",
@@ -56,7 +56,7 @@ export default function JupiterFLPage() {
               Tequesta, and northern Palm Beach County. Know your market. Outperform your competitors.
             </p>
             <CTAButton href="/free-report" size="xl" micro="Free report. 48-hour delivery. Jupiter FL market analysis included.">
-              Get Your Free Jupiter FL Intelligence Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>
@@ -110,6 +110,77 @@ export default function JupiterFLPage() {
           </div>
         </section>
 
+        {/* ── LOCAL VS NATIONAL ── */}
+        <section className="bg-light py-16 sm:py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-black text-navy mb-4">
+              Our Local Approach vs. National Firms
+            </h2>
+            <p className="text-slate leading-relaxed mb-10 max-w-2xl">
+              When a national AI consulting firm sends a team into a Jupiter business, they typically
+              bring a framework built for companies 10x your size. The deliverable looks impressive.
+              The invoice looks painful. And three months later, you&apos;re implementing a system
+              designed for a company with an IT department — when you&apos;re the IT department.
+            </p>
+            <div className="space-y-6">
+              {[
+                {
+                  title: "We start with competitive intelligence, not technology.",
+                  body: "Before recommending a single AI tool, we map your competitive landscape. Who's ranking above you? Who's appearing when someone asks ChatGPT or Perplexity for your service? That's the foundation of every engagement.",
+                },
+                {
+                  title: "We build strategy at SMB scale.",
+                  body: "Our standard competitive intelligence report uses the same analytical rigor deployed by McKinsey for enterprise clients — applied to a Jupiter business with 5–50 employees. Specific insights. Specific recommendations. 90-day action plan.",
+                },
+                {
+                  title: "We price for owner-operators, not corporate budgets.",
+                  body: "The free Competitive Intelligence Report is exactly that — free. No obligation. We believe once you see what real AI-driven intelligence looks like applied to your business, you'll want more.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="bg-white rounded-xl p-6 border border-slate/10">
+                  <h3 className="text-navy font-black text-lg mb-2">{item.title}</h3>
+                  <p className="text-slate text-sm leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CLIENT RESULTS ── */}
+        <section className="bg-white py-16 sm:py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-black text-navy mb-3">Recent Client Results</h2>
+            <p className="text-slate mb-10 text-sm">Results are specific to these clients and depend on implementation and market conditions.</p>
+            <div className="space-y-5">
+              {[
+                {
+                  label: "Jupiter-area medical spa · 38 employees",
+                  result: "+31% organic appointment inquiries",
+                  detail: "AEO audit revealed competitor appearing in AI search results 8× more often. Within 60 days of implementing content recommendations and GBP optimization, client appeared in top 3 results for 3 of 5 target terms.",
+                },
+                {
+                  label: "Northern Palm Beach County professional services · 12 employees",
+                  result: "$28,000 estimated annual savings",
+                  detail: "Operations audit identified 4 hours/day of manual work automatable with existing AI tools. Implementation took 6 weeks. Staff time redirected to revenue-generating activity.",
+                },
+                {
+                  label: "Tequesta home services company · 9 employees",
+                  result: "+22% inbound lead conversion in first 90 days",
+                  detail: "Customer response time on online leads dropped from 4-hour average to 12 minutes after deploying AI-assisted inbox routing.",
+                },
+              ].map((item) => (
+                <div key={item.label} className="border border-slate/10 rounded-xl p-6 flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1">
+                    <p className="text-xs text-slate/60 uppercase tracking-wide mb-1">{item.label}</p>
+                    <p className="text-navy font-black text-xl mb-2">{item.result}</p>
+                    <p className="text-slate text-sm leading-relaxed">{item.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── RELATED ── */}
         <section className="bg-light py-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -132,7 +203,7 @@ export default function JupiterFLPage() {
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-white mb-6">Ready to dominate the Jupiter FL market?</h2>
             <CTAButton href="/free-report" size="lg" micro="Free. 48-hour delivery. Jupiter market intel included.">
-              Get Your Free Report
+              $5,000 Business Intelligence Report... FREE
             </CTAButton>
           </div>
         </section>

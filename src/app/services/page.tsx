@@ -39,7 +39,7 @@ const tiers = [
     outcome:
       "Walk away knowing exactly where you stand, who's threatening you, and your 3 highest-leverage moves.",
     cta: "/free-report",
-    ctaLabel: "Start with Your Free Report",
+    ctaLabel: "$5,000 Business Intelligence Report... FREE",
     ctaMicro: "The first report is free. No credit card, no sales call.",
     highlight: true,
   },
@@ -230,7 +230,7 @@ export default function ServicesPage() {
                 </svg>
               </Link>
               <CTAButton href="/free-report" size="base" micro="">
-                Start With Your Free Report
+                $5,000 Business Intelligence Report... FREE
               </CTAButton>
             </div>
           </div>

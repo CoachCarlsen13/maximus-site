@@ -22,6 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
     { url: `${BASE_URL}/case-studies`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
 
+    // ── Blog articles ────────────────────────────────────────────────
+    { url: `${BASE_URL}/blog/ai-invisible-to-chatgpt`, lastModified: now, changeFrequency: "monthly", priority: 0.80 },
+    { url: `${BASE_URL}/blog/competitors-using-ai`, lastModified: now, changeFrequency: "monthly", priority: 0.80 },
+    { url: `${BASE_URL}/blog/hidden-cost-manual-processes`, lastModified: now, changeFrequency: "monthly", priority: 0.80 },
+
     // ── Location / programmatic SEO pages ───────────────────────────
     { url: `${BASE_URL}/locations/ai-consulting-jupiter-fl`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE_URL}/locations/ai-consulting-palm-beach-gardens`, lastModified: now, changeFrequency: "monthly", priority: 0.80 },

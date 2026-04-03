@@ -22,27 +22,38 @@ const categories = [
   "Case Studies",
 ];
 
-// Template for future posts — content pipeline will populate this
-const comingTopics = [
+const publishedArticles = [
+  {
+    category: "AI Visibility (AEO)",
+    title: "Why Your Business Is Invisible to ChatGPT — And How to Fix It",
+    teaser: "When someone asks AI 'what's the best medical spa in Jupiter FL,' does your business appear? Here's why 87% of businesses don't — and what changes that.",
+    href: "/blog/ai-invisible-to-chatgpt",
+    date: "April 3, 2026",
+    readTime: "8 min",
+  },
   {
     category: "AI Strategy",
     title: "Why Your Competitors Are Using AI and You Don't Know It Yet",
-    teaser: "The adoption gap between AI-forward businesses and traditional ones is widening faster than anyone's reporting. Here's what the data actually shows.",
-  },
-  {
-    category: "Competitive Intelligence",
-    title: "The 5 Questions Every Business Owner Should Be Asking About Their Market",
-    teaser: "Enterprise companies pay consultants $50K to answer these questions. AI can answer them in 48 hours for a fraction of that cost.",
-  },
-  {
-    category: "AI Visibility (AEO)",
-    title: "Why You're Invisible to ChatGPT — And How to Fix It",
-    teaser: "When someone asks AI 'what's the best medical spa in Jupiter FL,' does your business appear? Here's why most don't — and what changes that.",
+    teaser: "81% of businesses are adopting AI — but only 6% have embedded it into operations. The gap between leaders and laggards is accelerating.",
+    href: "/blog/competitors-using-ai",
+    date: "April 3, 2026",
+    readTime: "7 min",
   },
   {
     category: "Business Operations",
     title: "The Hidden Cost of Manual Processes (And the AI That Eliminates Them)",
     teaser: "The average SMB spends 40% of labor costs on tasks AI handles for pennies. The math of automation is more compelling than most owners realize.",
+    href: "/blog/hidden-cost-manual-processes",
+    date: "April 3, 2026",
+    readTime: "6 min",
+  },
+];
+
+const comingTopics = [
+  {
+    category: "Competitive Intelligence",
+    title: "The 5 Questions Every Business Owner Should Be Asking About Their Market",
+    teaser: "Enterprise companies pay consultants $50K to answer these questions. AI can answer them in 48 hours for a fraction of that cost.",
   },
 ];
 
@@ -87,22 +98,48 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* ── COMING SOON ── */}
+        {/* ── PUBLISHED ARTICLES ── */}
         <section className="bg-light py-20 sm:py-28">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate/20 mb-6">
-                <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-                <span className="text-navy text-sm font-medium">Content Pipeline Active — First Posts Publishing Soon</span>
-              </div>
               <h2 className="text-3xl font-black text-navy">
-                Coming From the Intelligence Pipeline
+                Latest Intelligence
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {publishedArticles.map((post) => (
+                <a key={post.title} href={post.href} className="bg-white rounded-2xl p-7 border border-slate/20 hover:border-gold/40 transition-colors block">
+                  <span className="px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-bold">
+                    {post.category}
+                  </span>
+                  <h3 className="text-navy font-black text-lg mt-4 mb-3 leading-snug">
+                    {post.title}
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed mb-4">{post.teaser}</p>
+                  <div className="flex items-center gap-2 text-slate/50 text-xs">
+                    <span>{post.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-slate/30" />
+                    <span>{post.readTime} read</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── COMING SOON ── */}
+        <section className="bg-white py-16 sm:py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl font-black text-navy">
+                Coming Next
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
               {comingTopics.map((post) => (
-                <div key={post.title} className="bg-white rounded-2xl p-7 border border-slate/20">
+                <div key={post.title} className="bg-light rounded-2xl p-7 border border-slate/20">
                   <span className="px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-bold">
                     {post.category}
                   </span>

@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/book`, lastModified: now, changeFrequency: "monthly", priority: 0.65 },
     { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
     { url: `${BASE_URL}/case-studies`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${BASE_URL}/displacement`, lastModified: now, changeFrequency: "daily", priority: 0.90 },
 
     // ── Blog articles ────────────────────────────────────────────────
     { url: `${BASE_URL}/blog/ai-invisible-to-chatgpt`, lastModified: now, changeFrequency: "monthly", priority: 0.80 },

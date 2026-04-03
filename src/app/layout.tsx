@@ -57,6 +57,139 @@ const websiteSchema = {
   },
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://maximusintel.com/#localbusiness",
+  name: "Maximus AI Strategic Advisory",
+  image: "https://maximusintel.com/maximus-logo.png",
+  url: "https://maximusintel.com",
+  telephone: "",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Jupiter",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 26.9342,
+    longitude: -80.0942,
+  },
+  areaServed: [
+    { "@type": "State", name: "Florida" },
+    { "@type": "Country", name: "United States" },
+  ],
+  priceRange: "$$$$",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+  },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "AI Strategic Advisory",
+  provider: {
+    "@type": "Organization",
+    name: "Maximus AI Strategic Advisory",
+    url: "https://maximusintel.com",
+  },
+  areaServed: "US",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Maximus AI Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Free Competitive Edge Report",
+          description: "AI-powered competitive intelligence report analyzing market position, AI visibility, and growth opportunities.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI Operational Audit",
+          description: "Deep analysis of business operations to identify AI automation opportunities with ROI projections.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Strategic Intelligence Bible",
+          description: "Comprehensive market intelligence dossier with competitive analysis, opportunity mapping, and strategic recommendations.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI Visibility Optimization (AEO)",
+          description: "Optimize your business presence across AI answer engines including ChatGPT, Perplexity, and Google AI Overviews.",
+        },
+      },
+    ],
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is AI strategic advisory?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI strategic advisory combines competitive intelligence, market analysis, and operational auditing powered by AI systems. Maximus AI delivers enterprise-grade intelligence that was previously only available to Fortune 500 companies through firms like McKinsey or BCG, now accessible to small and mid-sized businesses.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is a Competitive Edge Report?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A Competitive Edge Report is a free, AI-generated competitive intelligence analysis that scores your digital visibility, maps your competitive landscape, evaluates your AI readiness, and provides a prioritized roadmap for growth. It typically takes 48 hours to generate.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is AEO (Answer Engine Optimization)?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AEO is the practice of optimizing your business's digital presence so AI systems like ChatGPT, Perplexity, and Google AI Overviews can find, understand, and recommend your business. As more consumers use AI for discovery, AEO is becoming as important as traditional SEO.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much does Maximus AI cost?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The Competitive Edge Report is completely free with no sales call required. Paid services range from one-time operational audits ($3,000-$7,500) to ongoing strategic advisory retainers. We believe in demonstrating value before asking for commitment.",
+      },
+    },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://maximusintel.com" },
+    { "@type": "ListItem", position: 2, name: "Free Report", item: "https://maximusintel.com/free-report" },
+    { "@type": "ListItem", position: 3, name: "Services", item: "https://maximusintel.com/services" },
+    { "@type": "ListItem", position: 4, name: "Blog", item: "https://maximusintel.com/blog" },
+    { "@type": "ListItem", position: 5, name: "About", item: "https://maximusintel.com/about" },
+  ],
+};
+
 // Display font: Cormorant Garamond — ultra-premium serif, signals serious advisory (not AI startup)
 const display = Cormorant_Garamond({
   variable: "--font-display",
@@ -124,6 +257,22 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
       <body className={`${display.variable} ${body.variable} antialiased`}>{children}</body>

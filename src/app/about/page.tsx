@@ -1,6 +1,6 @@
 // Maximus AI Strategic Advisory — About Page
 // Created: 2026-03-28
-// Joel Wynn story, founding principle, named after son Maximus (US Marine MP)
+// Joel Winns story, founding principle, named after son Maximus (US Marine MP)
 import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -8,11 +8,11 @@ import CTAButton from "../../components/CTAButton";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Joel Wynn — Founder, Maximus AI Strategic Advisory",
+  title: "About Joel Winns — Founder, Maximus AI Strategic Advisory",
   description:
-    "Joel Wynn founded Maximus AI on a principle: those who have the ability have the responsibility to help and protect those who can't. Named after his son Maximus, a US Marine Military Police officer.",
+    "Joel Winns founded Maximus AI on a principle: those who have the ability have the responsibility to help and protect those who can't. Named after his son Maximus, a US Marine Military Police officer.",
   openGraph: {
-    title: "About Joel Wynn — Why Maximus Was Built",
+    title: "About Joel Winns — Why Maximus Was Built",
     description:
       "The story behind Maximus AI: a founder who believed the largest unemployment event in human history could become the biggest financial opportunity — for the businesses willing to move first.",
   },
@@ -22,7 +22,7 @@ export default function AboutPage() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Joel Wynn",
+    name: "Joel Winns",
     jobTitle: "CEO and Founder",
     worksFor: {
       "@type": "Organization",
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <p className="text-xl text-white/70 max-w-2xl leading-relaxed">
               The story starts with a principle I was raised with and a son whose name I chose to
               carry forward. By{" "}
-              <strong className="text-white">Joel Wynn</strong>, Founder &amp; CEO.
+              <strong className="text-white">Joel Winns</strong>, Founder &amp; CEO.
             </p>
           </div>
         </section>

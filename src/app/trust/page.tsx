@@ -99,7 +99,7 @@ export default function TrustPage() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Joel Wynn",
+    name: "Joel Winns",
     jobTitle: "CEO and Founder",
     worksFor: {
       "@type": "Organization",
@@ -241,7 +241,7 @@ export default function TrustPage() {
                 &ldquo;We didn&apos;t choose Claude because it was the most capable model.
                 We chose it because when the pressure came, it didn&apos;t blink.&rdquo;
               </p>
-              <p className="text-gold text-sm mt-3 font-semibold">— Joel Wynn, Founder</p>
+              <p className="text-gold text-sm mt-3 font-semibold">— Joel Winns, Founder</p>
             </div>
           </div>
         </section>
@@ -287,7 +287,7 @@ export default function TrustPage() {
 
             <div className="mt-12 p-8 rounded-2xl bg-navy text-center">
               <p className="text-white/50 text-sm mb-3">Author &amp; Guarantor of the Integrity Mandate</p>
-              <p className="text-white text-2xl font-black mb-2">Joel Wynn</p>
+              <p className="text-white text-2xl font-black mb-2">Joel Winns</p>
               <p className="text-gold text-sm font-semibold">
                 Founder &amp; CEO, Maximus AI Strategic Advisory
               </p>
@@ -392,7 +392,7 @@ export default function TrustPage() {
             <p className="text-navy font-bold text-center mb-8">Learn more about how Maximus works</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
               {[
-                { href: "/about", label: "About Joel Wynn", desc: "Why Maximus was built the way it was" },
+                { href: "/about", label: "About Joel Winns", desc: "Why Maximus was built the way it was" },
                 { href: "/services", label: "Our Services", desc: "How we deliver intelligence" },
                 { href: "/free-report", label: "$5,000 Business Intelligence Report... FREE", desc: "Your competitive report in 48 hours" },
               ].map((l) => (

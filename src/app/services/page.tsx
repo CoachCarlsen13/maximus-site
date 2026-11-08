@@ -54,7 +54,7 @@ const tiers = [
       "Your AI-powered strategic partner. Monthly intelligence briefings, competitive monitoring, and strategic advisory calls that keep you ahead of every move in your market.",
     deliverables: [
       "Weekly competitive intelligence updates",
-      "Monthly strategy call with Joel Wynn",
+      "Monthly strategy call with Joel Winns",
       "Continuous competitor monitoring (alerts on moves within 24h)",
       "Quarterly deep-dive market analysis",
       "Priority access to all new intelligence tools",

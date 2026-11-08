@@ -34,7 +34,7 @@ const localBusinessSchema = {
     addressRegion: "FL",
     addressCountry: "US",
   },
-  founder: { "@type": "Person", name: "Joel Wynn" },
+  founder: { "@type": "Person", name: "Joel Winns" },
 };
 
 export default function JupiterFLPage() {

@@ -9,7 +9,7 @@ import CTAButton from "../../components/CTAButton";
 export const metadata: Metadata = {
   title: "Blog — AI Strategy & Competitive Intelligence Insights",
   description:
-    "Insights on AI strategy, competitive intelligence, and business operations from Joel Wynn and the Maximus AI team. Practical intelligence for business owners who intend to win.",
+    "Insights on AI strategy, competitive intelligence, and business operations from Joel Winns and the Maximus AI team. Practical intelligence for business owners who intend to win.",
   robots: { index: true, follow: true },
 };
 
@@ -77,7 +77,7 @@ export default function BlogPage() {
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
               Practical intelligence on AI strategy, competitive positioning, and business operations.
               Written by{" "}
-              <strong className="text-white">Joel Wynn</strong>, Founder of Maximus AI.
+              <strong className="text-white">Joel Winns</strong>, Founder of Maximus AI.
             </p>
           </div>
         </section>

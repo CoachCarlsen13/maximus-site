@@ -58,7 +58,7 @@ export default function CaseStudiesPage() {
               </h2>
               <p className="text-slate text-lg leading-relaxed max-w-xl mx-auto mb-6">
                 We are currently running competitive intelligence audits on 10 Jupiter, FL
-                businesses. Every audit is graded by Joel Wynn against our A+ quality standard
+                businesses. Every audit is graded by Joel Winns against our A+ quality standard
                 before it publishes. Results expected within 48 hours.
               </p>
               <div className="flex items-center justify-center gap-2">

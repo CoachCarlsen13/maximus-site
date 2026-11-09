@@ -2,7 +2,8 @@
 // Created: 2026-03-17
 // Updated: 2026-03-27 — Added JSON-LD Organization + WebSite schema for AEO/GEO visibility
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
+import RevealInit from "../components/RevealInit";
 import "./globals.css";
 
 const organizationSchema = {
@@ -11,13 +12,13 @@ const organizationSchema = {
   name: "Maximus AI Strategic Advisory",
   alternateName: "Maximus AI",
   url: "https://maximusintel.com",
-  logo: "https://maximusintel.com/maximus-logo.png",
+  logo: "https://maximusintel.com/brand/shield-ai.svg",
   description:
-    "Enterprise-grade competitive intelligence for small and mid-sized businesses. The McKinsey for SMBs — AI-powered market intelligence delivered in 48 hours.",
+    "Enterprise-grade competitive intelligence and AI strategy for small and mid-sized businesses. Sourced findings, reviewed by a human, delivered in 48 hours.",
   foundingDate: "2026",
   founder: {
     "@type": "Person",
-    name: "Joel Winn",
+    name: "Joel Winns",
     jobTitle: "CEO and Founder",
   },
   areaServed: "US",
@@ -27,7 +28,7 @@ const organizationSchema = {
     "Business Intelligence",
     "AI Operational Audit",
   ],
-  slogan: "Everyone else made you AI promises. We built the system that actually delivers.",
+  slogan: "Designed to Give Your Business the Ultimate Competitive Edge.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
@@ -62,7 +63,7 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   "@id": "https://maximusintel.com/#localbusiness",
   name: "Maximus AI Strategic Advisory",
-  image: "https://maximusintel.com/maximus-logo.png",
+  image: "https://maximusintel.com/brand/shield-ai.svg",
   url: "https://maximusintel.com",
   telephone: "",
   address: {
@@ -148,7 +149,7 @@ const faqSchema = {
       name: "What is AI strategic advisory?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AI strategic advisory combines competitive intelligence, market analysis, and operational auditing powered by AI systems. Maximus AI delivers enterprise-grade intelligence that was previously only available to Fortune 500 companies through firms like McKinsey or BCG, now accessible to small and mid-sized businesses.",
+        text: "AI strategic advisory combines competitive intelligence, market analysis and operational auditing, produced with AI and reviewed by people. Maximus AI brings the kind of strategy work large companies have long bought from consulting firms within reach of small and mid-sized businesses.",
       },
     },
     {
@@ -190,20 +191,20 @@ const breadcrumbSchema = {
   ],
 };
 
-// Display font: Cormorant Garamond — ultra-premium serif, signals serious advisory (not AI startup)
-const display = Cormorant_Garamond({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-// Body font: Plus Jakarta Sans — modern, refined, not the cliché Inter/Space Grotesk
-const body = Plus_Jakarta_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+// Brand type system (maximus-brand-identity v1.3): Sora headlines (Clash Display fallback),
+// DM Sans body, JetBrains Mono data/labels, Playfair Display for the single hero title.
+// Self-hosted (SIL Open Font License 1.1, see src/fonts/OFL-1.1.txt): no build-time or
+// page-load dependency on Google Fonts.
+const head = localFont({ src: "../fonts/sora-latin-wght-normal.woff2", variable: "--font-head", weight: "100 800", display: "swap" });
+const bodyFont = localFont({ src: "../fonts/dm-sans-latin-wght-normal.woff2", variable: "--font-body", weight: "100 1000", display: "swap" });
+const data = localFont({ src: "../fonts/jetbrains-mono-latin-wght-normal.woff2", variable: "--font-data", weight: "100 800", display: "swap" });
+const serif = localFont({
+  src: [
+    { path: "../fonts/playfair-display-latin-wght-normal.woff2", style: "normal" },
+    { path: "../fonts/playfair-display-latin-wght-italic.woff2", style: "italic" },
+  ],
+  variable: "--font-serif",
+  weight: "400 900",
   display: "swap",
 });
 
@@ -213,7 +214,7 @@ export const metadata: Metadata = {
     template: "%s | Maximus AI",
   },
   description:
-    "Everyone else made you AI promises. We built the system that actually delivers. Self-learning. Self-improving. Self-governing. The AI system that gets smarter while your competition sleeps.",
+    "Enterprise-grade strategy, built for small and mid-size businesses. Competitive intelligence with every finding sourced and reviewed, delivered in 48 hours. Start with a free Competitive Edge Report.",
   keywords: [
     "competitive intelligence",
     "AI consulting",
@@ -222,7 +223,10 @@ export const metadata: Metadata = {
     "AI strategy",
     "small business AI",
   ],
+  metadataBase: new URL("https://maximusintel.com"),
+  icons: { icon: "/brand/shield.svg" },
   openGraph: {
+    images: [{ url: "/media/og-maximus.jpg", width: 1200, height: 630, alt: "Maximus AI: Strategic Business Intelligence" }],
     type: "website",
     locale: "en_US",
     siteName: "Maximus AI Strategic Advisory",
@@ -248,7 +252,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${head.variable} ${bodyFont.variable} ${data.variable} ${serif.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -275,7 +279,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
-      <body className={`${display.variable} ${body.variable} antialiased`}>{children}</body>
+      <body className="antialiased">
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] btn btn-primary px-4 py-2 text-sm">Skip to content</a>
+        <RevealInit />
+        {children}
+      </body>
     </html>
   );
 }

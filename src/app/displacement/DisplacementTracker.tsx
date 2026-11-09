@@ -4,7 +4,10 @@
 // Purpose: Animated dual counters + timeline feed. Fetches from Railway API.
 
 import { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
+import Image from "next/image";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { CTABand } from "../../components/ui";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -127,253 +130,131 @@ export default function DisplacementTracker() {
     return () => clearInterval(interval);
   }, [filter, fetchData]);
 
+  const offline = !!error && !data;
+
   return (
-    <div className="min-h-screen bg-[#070E1C] text-white">
-      {/* Header */}
-      <header className="border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-gold font-display text-xl tracking-wide">
-            MAXIMUS AI
-          </Link>
-          <nav className="flex items-center gap-6 text-sm text-white/60">
-            <Link href="/free-report" className="hover:text-gold transition-colors">
-              Free Report
-            </Link>
-            <Link href="/ai-audit" className="hover:text-gold transition-colors">
-              AI Audit
-            </Link>
-            <Link href="/book" className="hover:text-gold transition-colors">
-              Book
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <>
+      <Header />
+      <main id="main">
+        <section className="relative overflow-hidden pb-16 pt-36 sm:pt-44">
+          <div className="absolute inset-0">
+            <Image src="/media/displacement.webp" alt="" fill priority sizes="100vw" className="object-cover" />
+          </div>
+          <div className="media-veil" style={{ background: "linear-gradient(180deg, rgba(6,9,24,.82) 0%, rgba(6,9,24,.7) 50%, #0A0E27 100%)" }} />
+          <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6">
+            <span className="label justify-center">{offline ? "Data feed offline" : "Live data"}</span>
+            <h1 className="h-display mt-6 text-[2.5rem] sm:text-6xl">AI Displacement Tracker</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+              Tracking announced AI infrastructure investment against AI-related workforce reductions, from public filings, earnings calls and news reports.
+            </p>
+          </div>
 
-      {/* Hero Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gold uppercase tracking-[0.3em] text-xs mb-4">
-            LIVE DATA
-          </p>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-4">
-            AI Displacement Tracker
-          </h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            Real-time tracking of AI infrastructure investment vs. AI-driven
-            workforce displacement. The numbers tell the story.
-          </p>
-        </div>
-      </section>
+          <div className="relative mx-auto mt-14 grid max-w-5xl gap-6 px-4 sm:px-6 md:grid-cols-2">
+            {offline ? (
+              <div className="glass p-8 text-center md:col-span-2">
+                <p className="font-head text-xl font-semibold text-white">The live data feed is being rebuilt.</p>
+                <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-white/60">
+                  We would rather show nothing than show numbers we cannot stand behind. The tracker returns when its data pipeline is back and verified.
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="glass p-8 text-center">
+                  <div className="label justify-center !text-[11px]">AI investment announced</div>
+                  <div className="font-data mt-4 text-5xl font-semibold text-white md:text-6xl" style={{ textShadow: "0 0 28px rgba(0,180,216,.45)" }}>
+                    {loading ? <span className="animate-pulse">…</span> : data ? <AnimatedCounter target={parseFloat(data.counters.total_investment_usd)} formatter={(n) => formatUSD(String(n))} /> : "—"}
+                  </div>
+                  <div className="mt-3 text-sm text-white/50">across {data?.counters.total_investment_count ?? "—"} announcements</div>
+                </div>
+                <div className="glass p-8 text-center">
+                  <div className="font-data text-[11px] uppercase tracking-[0.15em] text-[#FF4444]">AI-related job losses</div>
+                  <div className="font-data mt-4 text-5xl font-semibold text-white md:text-6xl">
+                    {loading ? <span className="animate-pulse">…</span> : data ? <AnimatedCounter target={data.counters.total_layoffs} formatter={formatNumber} /> : "—"}
+                  </div>
+                  <div className="mt-3 text-sm text-white/50">across {data?.counters.total_layoff_events ?? "—"} tracked events</div>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
 
-      {/* Dual Counters */}
-      <section className="pb-12 px-4">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-          {/* Investment Counter */}
-          <div className="bg-gradient-to-br from-[#0F1A2E] to-[#1B2A4A] rounded-2xl p-8 border border-gold/20 text-center">
-            <div className="text-gold/80 uppercase tracking-widest text-xs mb-2">
-              Total AI Investment Announced
-            </div>
-            <div className="font-display text-5xl md:text-6xl text-gold mb-2">
+        {!offline && (
+          <section className="section-navy px-4 pb-20 sm:px-6">
+            <div className="mx-auto max-w-5xl">
+              <div className="mb-8 flex gap-2 overflow-x-auto" role="tablist" aria-label="Filter events">
+                {(
+                  [
+                    { key: "all", label: "All events" },
+                    { key: "investments", label: "Investments" },
+                    { key: "layoffs", label: "Layoffs" },
+                  ] as const
+                ).map(({ key, label }) => (
+                  <button
+                    key={key}
+                    role="tab"
+                    aria-selected={filter === key}
+                    onClick={() => setFilter(key)}
+                    className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm transition-colors ${filter === key ? "border-[#00B4D8] bg-[#00B4D8] font-semibold text-[#060918]" : "border-[#00B4D8]/25 text-white/70 hover:border-[#00B4D8]/60"}`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
               {loading ? (
-                <span className="animate-pulse">...</span>
-              ) : data ? (
-                <AnimatedCounter
-                  target={parseFloat(data.counters.total_investment_usd)}
-                  formatter={(n) => formatUSD(String(n))}
-                />
+                <div className="space-y-4">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="glass h-24 animate-pulse" />
+                  ))}
+                </div>
+              ) : error ? (
+                <p className="py-10 text-center text-white/55">The event feed could not be loaded. Please try again later.</p>
+              ) : data?.events.length === 0 ? (
+                <p className="py-10 text-center text-white/55">No events for this filter.</p>
               ) : (
-                "$0"
-              )}
-            </div>
-            <div className="text-white/40 text-sm">
-              across{" "}
-              {data?.counters.total_investment_count || 0} announcements
-            </div>
-          </div>
-
-          {/* Layoff Counter */}
-          <div className="bg-gradient-to-br from-[#2A0F0F] to-[#1A0505] rounded-2xl p-8 border border-red-500/20 text-center">
-            <div className="text-red-400/80 uppercase tracking-widest text-xs mb-2">
-              Total AI-Related Job Losses
-            </div>
-            <div className="font-display text-5xl md:text-6xl text-red-400 mb-2">
-              {loading ? (
-                <span className="animate-pulse">...</span>
-              ) : data ? (
-                <AnimatedCounter
-                  target={data.counters.total_layoffs}
-                  formatter={formatNumber}
-                />
-              ) : (
-                "0"
-              )}
-            </div>
-            <div className="text-white/40 text-sm">
-              across{" "}
-              {data?.counters.total_layoff_events || 0} tracked events
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Filter Tabs */}
-      <section className="px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex gap-2 mb-8 overflow-x-auto">
-            {(
-              [
-                { key: "all", label: "All Events" },
-                { key: "investments", label: "Investments" },
-                { key: "layoffs", label: "Layoffs" },
-              ] as const
-            ).map(({ key, label }) => (
-              <button
-                key={key}
-                onClick={() => setFilter(key)}
-                className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${
-                  filter === key
-                    ? "bg-gold text-navy-dark font-semibold"
-                    : "bg-white/5 text-white/60 hover:bg-white/10"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          {/* Timeline Feed */}
-          {error ? (
-            <div className="text-center py-12 text-red-400">
-              <p className="text-lg mb-2">Unable to load data</p>
-              <p className="text-sm text-white/40">{error}</p>
-            </div>
-          ) : loading ? (
-            <div className="space-y-4">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div
-                  key={i}
-                  className="bg-white/5 rounded-xl p-6 animate-pulse h-24"
-                />
-              ))}
-            </div>
-          ) : data?.events.length === 0 ? (
-            <div className="text-center py-12 text-white/40">
-              No events found for this filter.
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {data?.events.map((event, idx) => (
-                <div
-                  key={event.id || idx}
-                  className={`rounded-xl p-5 border transition-all hover:border-opacity-40 ${
-                    event.event_type === "investment"
-                      ? "bg-[#0F1A2E]/60 border-gold/10 hover:border-gold/30"
-                      : "bg-[#1A0505]/60 border-red-500/10 hover:border-red-500/30"
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span
-                          className={`text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded ${
-                            event.event_type === "investment"
-                              ? "bg-gold/20 text-gold"
-                              : "bg-red-500/20 text-red-400"
-                          }`}
-                        >
-                          {event.event_type === "investment"
-                            ? "Investment"
-                            : "Layoff"}
-                        </span>
-                        <span className="text-white/40 text-xs">
-                          {formatDate(event.date)}
-                        </span>
-                        {event.category && (
-                          <span className="text-white/30 text-xs">
-                            {event.category.replace(/_/g, " ")}
-                          </span>
+                <div className="space-y-3">
+                  {data?.events.map((event, idx) => (
+                    <article key={event.id || idx} className="glass p-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="mb-2 flex flex-wrap items-center gap-3">
+                            <span className={`font-data rounded px-2 py-0.5 text-[11px] uppercase tracking-wider ${event.event_type === "investment" ? "bg-[#00B4D8]/15 text-[#00D4FF]" : "bg-[#FF4444]/15 text-[#FF8080]"}`}>
+                              {event.event_type === "investment" ? "Investment" : "Layoff"}
+                            </span>
+                            <span className="font-data text-xs text-white/45">{formatDate(event.date)}</span>
+                            {event.category && <span className="text-xs text-white/35">{event.category.replace(/_/g, " ")}</span>}
+                          </div>
+                          <h3 className="font-head font-semibold text-white">
+                            {event.company}
+                            {event.metric_value && (
+                              <span className="font-data ml-2 text-[#00D4FF]">
+                                {event.event_type === "investment" ? formatUSD(event.metric_value) : `${parseInt(event.metric_value).toLocaleString()} ${event.metric_unit}`}
+                              </span>
+                            )}
+                          </h3>
+                          <p className="mt-1 text-sm leading-relaxed text-white/60">{event.description}</p>
+                        </div>
+                        {event.source_url && (
+                          <a href={event.source_url} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-xs text-[#00D4FF] underline underline-offset-4">
+                            Source
+                          </a>
                         )}
                       </div>
-                      <h3 className="text-white font-semibold mb-1">
-                        {event.company}
-                        {event.metric_value && (
-                          <span
-                            className={`ml-2 ${
-                              event.event_type === "investment"
-                                ? "text-gold"
-                                : "text-red-400"
-                            }`}
-                          >
-                            {event.event_type === "investment"
-                              ? formatUSD(event.metric_value)
-                              : `${parseInt(event.metric_value).toLocaleString()} ${event.metric_unit}`}
-                          </span>
-                        )}
-                      </h3>
-                      <p className="text-white/50 text-sm leading-relaxed">
-                        {event.description}
-                      </p>
-                    </div>
-                    {event.source_url && (
-                      <a
-                        href={event.source_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/30 hover:text-gold text-xs whitespace-nowrap"
-                      >
-                        Source
-                      </a>
-                    )}
-                  </div>
-                  {event.source_name && (
-                    <div className="mt-2 text-white/20 text-xs">
-                      Source: {event.source_name}
-                    </div>
-                  )}
+                      {event.source_name && <div className="mt-2 text-xs text-white/35">Source: {event.source_name}</div>}
+                    </article>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          )}
-        </div>
-      </section>
+          </section>
+        )}
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 mt-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-2xl md:text-3xl text-white mb-4">
-            The displacement is real. The opportunity is now.
-          </h2>
-          <p className="text-white/50 mb-8 max-w-xl mx-auto">
-            Every displaced professional needs guidance. Every company needs an
-            AI strategy. Maximus helps both sides of the equation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/free-report"
-              className="px-8 py-3 bg-gold text-navy-dark font-semibold rounded-lg hover:bg-gold-light transition-colors"
-            >
-              Get Your Free Intelligence Report
-            </Link>
-            <Link
-              href="/book"
-              className="px-8 py-3 border border-white/20 text-white rounded-lg hover:border-gold/40 hover:text-gold transition-colors"
-            >
-              Read The Book
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-8 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/30">
-          <p>
-            Data sourced from public filings, earnings calls, news reports, and
-            government statistics. Updated daily.
-          </p>
-          <p>Maximus AI Strategic Advisory</p>
-        </div>
-      </footer>
-    </div>
+        <CTABand
+          title="The displacement is real. So is the opportunity."
+          intro="Every company needs an AI strategy, and every professional whose work AI changes deserves a path forward. Maximus works on both sides. Start with your free Competitive Edge Report."
+          image="/media/hero-horizon.webp"
+        />
+      </main>
+      <Footer />
+    </>
   );
 }

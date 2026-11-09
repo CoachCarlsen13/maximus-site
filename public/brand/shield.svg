@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 464" width="400" height="464" role="img" aria-label="Maximus AI shield mark"><title>Maximus AI</title><defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7FCFF"></stop><stop offset=".18" stop-color="#AEBBCB"></stop>
+      <stop offset=".38" stop-color="#EEF4FA"></stop><stop offset=".58" stop-color="#6E7D91"></stop>
+      <stop offset=".78" stop-color="#D3DDE8"></stop><stop offset="1" stop-color="#4F5C6E"></stop>
+    </linearGradient>
+    <linearGradient id="chromeEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"></stop><stop offset=".5" stop-color="#9FB0C4" stop-opacity=".4"></stop><stop offset="1" stop-color="#2B3546" stop-opacity=".8"></stop>
+    </linearGradient>
+    <radialGradient id="field" cx=".5" cy=".36" r=".75">
+      <stop offset="0" stop-color="#16265E"></stop><stop offset=".55" stop-color="#0C1236"></stop><stop offset="1" stop-color="#060918"></stop>
+    </radialGradient>
+    <linearGradient id="mFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"></stop><stop offset=".35" stop-color="#D5DFEA"></stop>
+      <stop offset=".62" stop-color="#8797AB"></stop><stop offset="1" stop-color="#E4ECF4"></stop>
+    </linearGradient>
+    <linearGradient id="mShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0A0E27" stop-opacity="0"></stop><stop offset=".5" stop-color="#0A0E27" stop-opacity="0"></stop>
+      <stop offset=".5" stop-color="#0A0E27" stop-opacity=".28"></stop><stop offset="1" stop-color="#0A0E27" stop-opacity=".12"></stop>
+    </linearGradient>
+    <linearGradient id="sheenG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"></stop><stop offset=".5" stop-color="#fff" stop-opacity=".55"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+    </linearGradient>
+    <radialGradient id="haloG" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#00D4FF" stop-opacity=".55"></stop><stop offset=".45" stop-color="#00B4D8" stop-opacity=".18"></stop><stop offset="1" stop-color="#00B4D8" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="beamG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00B4D8" stop-opacity="0"></stop><stop offset=".5" stop-color="#E9FBFF"></stop><stop offset="1" stop-color="#00B4D8" stop-opacity="0"></stop>
+    </linearGradient>
+    <pattern id="hex" width="24" height="41.57" patternUnits="userSpaceOnUse">
+      <path d="M12 0 L24 6.93 L24 20.78 L12 27.71 L0 20.78 L0 6.93 Z M12 27.71 L12 41.57" fill="none" stroke="#00B4D8" stroke-width=".5" stroke-opacity=".22"></path>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"></feGaussianBlur></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"></feGaussianBlur></filter>
+    <path id="shieldOuter" d="M200 14 L370 62 C374 170 362 262 324 330 C290 390 248 424 200 450 C152 424 110 390 76 330 C38 262 26 170 30 62 Z"></path>
+    <path id="shieldInner" d="M200 40 L346 81 C349 175 338 254 304 315 C274 368 238 398 200 420 C162 398 126 368 96 315 C62 254 51 175 54 81 Z"></path>
+    <path id="em" d="M112 250 L112 96 L124 84 L154 84 L200 158 L246 84 L276 84 L288 96 L288 250 L252 250 L252 160 L200 236 L148 160 L148 250 Z"></path>
+    <path id="shieldMid" d="M200 28.2 L358.95 73.05 C362.7 174 351.5 260.1 315.9 323.6 C284.2 379.7 244.9 411.5 200 435.8 C155.1 411.5 115.9 379.7 84.1 323.6 C48.5 260.1 37.3 174 41.05 73.05 Z"></path>
+    <clipPath id="emClip"><use href="#em"></use></clipPath>
+    <linearGradient id="emBevel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"></stop><stop offset=".45" stop-color="#FFFFFF" stop-opacity=".15"></stop><stop offset=".55" stop-color="#0A0E27" stop-opacity=".25"></stop><stop offset="1" stop-color="#0A0E27" stop-opacity=".65"></stop></linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E6C80"></stop><stop offset="1" stop-color="#1B2232"></stop></linearGradient>
+    <radialGradient id="rivet" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset=".4" stop-color="#B9C6D4"></stop><stop offset="1" stop-color="#3B4658"></stop></radialGradient>
+    <linearGradient id="aiFace" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset=".55" stop-color="#C7D3E0"></stop><stop offset="1" stop-color="#8495AA"></stop></linearGradient>
+    <clipPath id="innerClip"><use href="#shieldInner"></use></clipPath>
+    <clipPath id="outerClip"><use href="#shieldOuter"></use></clipPath>
+    
+    
+  </defs>
+      <use href="#shieldOuter" fill="url(#steel)" transform="translate(0 7)"></use><use href="#shieldOuter" fill="url(#chrome)"></use><use href="#shieldOuter" fill="none" stroke="url(#chromeEdge)" stroke-width="2.4"></use><use href="#shieldMid" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="1.2" transform="translate(0 1.4)"></use><use href="#shieldMid" fill="none" stroke="#141B2C" stroke-opacity=".75" stroke-width="2.6"></use><use href="#shieldMid" fill="none" stroke="#2A3446" stroke-opacity=".55" stroke-width="1" stroke-dasharray="1.5 5" transform="translate(200 232) scale(1.035) translate(-200 -232)"></use><use href="#shieldMid" fill="none" stroke="#2A3446" stroke-opacity=".55" stroke-width="1" stroke-dasharray="1.5 5" transform="translate(200 232) scale(.968) translate(-200 -232)"></use><g class="rivets"><circle cx="200.00" cy="28.20" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="278.97" cy="50.48" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="359.54" cy="95.44" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="350.19" cy="223.84" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="303.89" cy="343.19" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="200.00" cy="435.80" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="96.13" cy="343.18" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="49.81" cy="223.84" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="40.46" cy="95.44" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle><circle cx="121.03" cy="50.48" r="4.2" fill="url(#rivet)" stroke="#141B2C" stroke-width=".8"></circle></g><use href="#shieldInner" fill="url(#field)"></use><rect x="0" y="0" width="400" height="464" fill="url(#hex)" clip-path="url(#innerClip)" opacity=".7"></rect><use href="#shieldInner" fill="none" stroke="#05081A" stroke-width="5"></use><use href="#shieldInner" fill="none" stroke="#00D4FF" stroke-opacity=".6" stroke-width="1.5"></use><use href="#em" fill="#00D4FF" filter="url(#glow)" opacity=".5"></use><use href="#em" fill="#070B20" transform="translate(0 7)"></use><use href="#em" fill="#46546A" transform="translate(0 3.5)"></use><use href="#em" fill="url(#mFace)"></use><use href="#em" fill="url(#mShade)"></use><use href="#em" fill="none" stroke="url(#emBevel)" stroke-width="12" clip-path="url(#emClip)"></use><use href="#em" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-opacity=".95"></use>
+    </svg>

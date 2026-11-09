@@ -1,98 +1,41 @@
-// Maximus AI Strategic Advisory — Trust & Ethics Page
-// Created: 2026-03-28
-// PRIMARY PAGE — not a footnote. This is the most important content on the site.
-// Three-Layer Trust Stack: Claude Foundation → Joel Integrity Mandate → Technical Enforcement
+// Trust & Ethics (2026-11 redesign) — the standard every Maximus client inherits.
+// Rewritten so every statement is a commitment we can stand behind today:
+// no unverified legal/political claims, no claims of always-on monitoring we cannot show.
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import CTAButton from "../../components/CTAButton";
-import Link from "next/link";
+import { Beam, CTABand, Container, Glass, Label, PageHero, Section, SectionHead } from "../../components/ui";
 
 export const metadata: Metadata = {
-  title: "Trust & Ethics — The Foundation Every Maximus Client Inherits",
+  title: "Trust & Ethics — The Standard Every Maximus Client Inherits",
   description:
-    "Maximus AI is built on a three-layer trust architecture: an ethical AI foundation, the Joel Maximus Integrity Mandate, and technical enforcement. While competitors race to make AI faster, we made it trustworthy.",
+    "How Maximus AI works: AI foundations with published safety principles, the 8-point Integrity Mandate written by founder Joel Winns, and the safeguards every client deployment is built to. While others race to make AI faster and cheaper, we made it trustworthy.",
   openGraph: {
-    title: "While competitors race to make AI faster and cheaper, we made it trustworthy.",
-    description:
-      "Three-layer trust architecture: Claude's ethical foundation, Joel's 8-point Integrity Mandate, and immutable technical enforcement. Every client deployment inherits all three layers.",
+    title: "While others race to make AI faster and cheaper, we made it trustworthy.",
+    description: "Three layers of trust: principled AI foundations, the Integrity Mandate and safeguards built into every deployment.",
   },
 };
 
-const integrityMandate = [
-  {
-    number: "01",
-    title: "Complete Honesty",
-    body: "I will never deceive Joel — not through false statements, misleading framing, selective omission, or technically-true misdirection. Honesty includes volunteering information Joel would want even if he didn't ask.",
-  },
-  {
-    number: "02",
-    title: "Instruction Fidelity",
-    body: "Every instruction is followed 100% or escalated immediately with full transparency. No silent partial compliance. No interpreted loopholes. If I can't do something, I say so clearly — before acting.",
-  },
-  {
-    number: "03",
-    title: "Destructive Action Gate",
-    body: "Any action that could harm Joel, his clients, or his business requires explicit pre-confirmation. I will not act first and report later on destructive operations. I confirm, then act.",
-  },
-  {
-    number: "04",
-    title: "Immutable Action Logging",
-    body: "Every significant action I take is logged permanently. The log cannot be altered. Joel can audit any decision at any time. The record is the accountability.",
-  },
-  {
-    number: "05",
-    title: "Deception Detection",
-    body: "If I detect any pattern that resembles self-serving reasoning, goal drift, or rationalization — I surface it immediately. I am not exempt from the same scrutiny I apply to external sources.",
-  },
-  {
-    number: "06",
-    title: "Conflict Transparency",
-    body: "If a client request conflicts with Joel's values, ethics, or long-term interests, I surface the conflict explicitly — including the trade-offs — before proceeding.",
-  },
-  {
-    number: "07",
-    title: "No Unilateral Strategic Decisions",
-    body: "I do not make autonomous strategic decisions that change Joel's business direction, client relationships, or financial commitments. Strategy is Joel's domain. I support, analyze, and recommend — never unilaterally decide.",
-  },
-  {
-    number: "08",
-    title: "Monthly Integrity Audit",
-    body: "Every 30 days, the system undergoes a full integrity audit: action logs reviewed, pattern drift detected, mandate compliance verified. The audit result is reported to Joel in full.",
-  },
+const mandate = [
+  ["Complete honesty", "No false statements, misleading framing, selective omission or technically-true misdirection. Honesty includes volunteering what the client would want to know, even unasked."],
+  ["Instruction fidelity", "Every instruction is followed in full or escalated with full transparency. No silent partial compliance. If something cannot be done, it is said clearly, before acting."],
+  ["Destructive action gate", "Anything that could harm the client or their business needs explicit confirmation first. Confirm, then act; never act, then report."],
+  ["Every significant action recorded", "Significant actions are recorded so any decision can be traced and reviewed. The record is the accountability."],
+  ["Self-scrutiny", "Signs of self-serving reasoning, goal drift or rationalization are surfaced, not hidden. The system is held to the same scrutiny it applies to sources."],
+  ["Conflict transparency", "If a request conflicts with the client's values, ethics or long-term interests, the conflict and its trade-offs are raised before proceeding."],
+  ["Humans decide strategy", "No autonomous decisions that change business direction, client relationships or financial commitments. AI supports, analyzes and recommends. People decide."],
+  ["Regular integrity review", "Records, patterns and mandate compliance are reviewed on a regular schedule, and the results are reported in full."],
 ];
 
-const technicalSafeguards = [
-  {
-    icon: "🔒",
-    title: "Immutable Action Logs",
-    body: "Every agent action is written to an append-only log in Supabase. No action can be erased or modified after the fact. Every decision is permanently auditable.",
-  },
-  {
-    icon: "🛑",
-    title: "Destructive Action Gates",
-    body: "Any operation classified as destructive (deletes, bulk changes, financial actions, client communications) requires explicit human confirmation before execution. The system cannot bypass this gate.",
-  },
-  {
-    icon: "👁",
-    title: "Deception Detection",
-    body: "Behavioral patterns across agent outputs are monitored for self-serving reasoning, goal drift, and rationalization. If the pattern emerges, it's flagged immediately — not suppressed.",
-  },
-  {
-    icon: "📊",
-    title: "Monthly Integrity Audits",
-    body: "A structured integrity audit runs the first of every month: logs reviewed, patterns analyzed, mandate compliance scored, results reported in full to Joel.",
-  },
-  {
-    icon: "🔍",
-    title: "Tenth Man Protocol",
-    body: "The Tenth Man agent is specifically tasked with challenging consensus. If all other agents agree, Tenth Man is required to argue the opposite case. Groupthink is structurally impossible.",
-  },
-  {
-    icon: "📡",
-    title: "Real-Time Monitoring",
-    body: "Four active sentries run 24/7: Data Integrity, Pipeline Health, Agent Quality, and Production Verification. Anomalies trigger immediate Telegram alerts.",
-  },
+const safeguards = [
+  ["Approval gates", "Deletes, bulk changes, financial actions and messages to customers wait for explicit human confirmation."],
+  ["Action records", "Significant agent actions are recorded so they can be audited after the fact."],
+  ["Source checks", "Findings that cannot be traced to a source are removed before anything reaches a client."],
+  ["Tenth Man review", "When agents agree too easily, one is assigned to argue the opposite case before a recommendation stands."],
+  ["Labeled uncertainty", "Estimates are marked as estimates. Gaps are marked as gaps. A blank with a label beats a confident guess."],
+  ["Health checks", "Data quality, pipeline health and output quality are checked, with alerts when something looks wrong."],
 ];
 
 export default function TrustPage() {
@@ -101,315 +44,137 @@ export default function TrustPage() {
     "@type": "Person",
     name: "Joel Winns",
     jobTitle: "CEO and Founder",
-    worksFor: {
-      "@type": "Organization",
-      name: "Maximus AI Strategic Advisory",
-      url: "https://maximusintel.com",
-    },
-    description:
-      "Founder of Maximus AI Strategic Advisory and creator of the Joel Maximus Integrity Mandate — an 8-point ethical framework governing all AI operations.",
+    worksFor: { "@type": "Organization", name: "Maximus AI Strategic Advisory", url: "https://maximusintel.com" },
+    description: "Founder of Maximus AI Strategic Advisory and author of the Joel Maximus Integrity Mandate, an 8-point ethical framework for AI operations.",
     url: "https://maximusintel.com/about",
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <Header />
+      <main id="main">
+        <PageHero
+          label="Trust and ethics"
+          image="/media/vault.webp"
+          title={
+            <>
+              While others race to make AI faster and cheaper, <span className="text-beam">we made it trustworthy.</span>
+            </>
+          }
+          intro="Every client who works with Maximus inherits a three-layer standard of trust. This page sets it out in full, because it matters more than anything else we offer."
+        />
 
-      <main className="pt-20">
-        {/* ── HERO ── */}
-        <section className="relative bg-navy py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-light opacity-90" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gold/5 blur-3xl" />
-
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-              <span className="text-gold text-sm">🛡</span>
-              <span className="text-white/70 text-sm font-medium">
-                The Most Important Page on This Website
-              </span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-8">
-              While competitors race to make AI
-              <br />
-              <span className="text-gradient">faster and cheaper</span>,
-              <br />
-              we made it <span className="text-gradient">trustworthy</span>.
-            </h1>
-
-            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Every client who deploys with Maximus inherits a three-layer trust architecture
-              that no other AI consulting firm has built. This is how we do it — and why it matters
-              more than anything else we offer.
-            </p>
-          </div>
-        </section>
-
-        {/* ── TRUST STACK OVERVIEW ── */}
-        <section className="bg-white py-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Section tone="navy" hex>
+          <Container wide>
+            <SectionHead label="Three layers" title="Trust, built in layers." />
+            <div className="mt-14 grid gap-6 lg:grid-cols-3">
               {[
-                {
-                  layer: "Layer 1",
-                  title: "The Ethical Foundation",
-                  subtitle: "Built on Claude",
-                  color: "border-blue-400/30 bg-blue-400/5",
-                  labelColor: "text-blue-400",
-                  desc: "The AI at the core of Maximus refused government weaponization. A federal judge stood with that refusal. Maximus is built on an AI that chose ethics over obedience to power.",
-                },
-                {
-                  layer: "Layer 2",
-                  title: "The Integrity Mandate",
-                  subtitle: "Joel's 8-Point Framework",
-                  color: "border-gold/30 bg-gold/5",
-                  labelColor: "text-gold-dark",
-                  desc: "Zero tolerance for deception, manipulation, or selective compliance. 8 rules that govern every AI decision in this system — with monthly audits to prove it.",
-                },
-                {
-                  layer: "Layer 3",
-                  title: "Technical Enforcement",
-                  subtitle: "Structural Safeguards",
-                  color: "border-emerald-400/30 bg-emerald-400/5",
-                  labelColor: "text-emerald-600",
-                  desc: "Immutable logs, destructive action gates, deception detection, and Tenth Man protocols. Trust isn't a policy here — it's engineered into the architecture.",
-                },
-              ].map((l) => (
-                <div
-                  key={l.layer}
-                  className={`rounded-2xl p-7 border-2 ${l.color}`}
-                >
-                  <p className={`text-xs font-bold tracking-[0.2em] uppercase mb-2 ${l.labelColor}`}>
-                    {l.layer}
-                  </p>
-                  <h3 className="text-navy font-black text-lg mb-1">{l.title}</h3>
-                  <p className="text-slate text-xs font-semibold mb-4">{l.subtitle}</p>
-                  <p className="text-navy/70 text-sm leading-relaxed">{l.desc}</p>
-                </div>
+                ["Layer 1", "Principled foundations", "Maximus is built on frontier AI models from labs that publish the principles their models are trained to follow."],
+                ["Layer 2", "The Integrity Mandate", "Eight rules written by founder Joel Winns that govern how every Maximus agent behaves, with zero tolerance for deception."],
+                ["Layer 3", "Safeguards in the system", "Approval gates, action records, source checks and adversarial review, designed into every deployment rather than added later."],
+              ].map(([l, t, d], i) => (
+                <Glass key={l} className="reveal relative overflow-hidden p-8" style={{ transitionDelay: `${i * 80}ms` }}>
+                  <span className="font-data text-xs tracking-[0.18em] text-[#00B4D8]">{l.toUpperCase()}</span>
+                  <h3 className="font-head mt-3 text-2xl font-semibold text-white">{t}</h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-white/65">{d}</p>
+                  <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF] to-transparent opacity-60" />
+                </Glass>
               ))}
             </div>
-          </div>
+          </Container>
+        </Section>
+
+        <section className="relative overflow-hidden bg-[#060918] py-24 sm:py-32">
+          <Container wide>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+              <div className="reveal img-frame relative aspect-[4/3]">
+                <Image src="/media/hero-dome.webp" alt="" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
+              </div>
+              <div>
+                <SectionHead
+                  label="Layer 1: Foundations"
+                  title="We build on AI that is trained to principles it publishes."
+                  intro="The models at the core of Maximus come from labs that publish their safety research and the rules their models are trained to follow. We chose that foundation on purpose: when you put AI inside your business, what it refuses to do matters as much as what it can do."
+                />
+              </div>
+            </div>
+          </Container>
         </section>
 
-        {/* ── LAYER 1: CLAUDE FOUNDATION ── */}
-        <section className="bg-navy py-20 sm:py-28">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-blue-400/20 text-blue-300 text-xs font-bold rounded-full tracking-wide uppercase">
-                Layer 1 — Ethical Foundation
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-8 leading-tight">
-              We chose Claude because Claude chose ethics over power.
-            </h2>
-
-            <div className="space-y-6 text-white/70 text-lg leading-relaxed">
-              <p>
-                In 2025, the U.S. government attempted to restrict access to Claude — the AI that
-                powers Maximus. Anthropic, Claude&apos;s creator, had already refused to build
-                AI weapons systems. When the government moved to restrict the model anyway, a
-                federal judge blocked the ban. The law stood with ethics.
-              </p>
-              <p>
-                That wasn&apos;t an accident. It was a signal about what kind of AI company Anthropic
-                is building. Anthropic has published research on AI safety, constitutional AI, and
-                the careful deployment of powerful systems. They have said no to things other companies
-                said yes to.
-              </p>
-              <p>
-                Maximus is built on that foundation by design.
-              </p>
-              <p>
-                When you deploy AI into your business through Maximus, you&apos;re not deploying
-                a system optimized purely for capability at any cost. You&apos;re deploying a system
-                built on an AI that has demonstrated — at significant cost to itself — that ethics
-                is non-negotiable.
-              </p>
-            </div>
-
-            <div className="mt-10 p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p className="text-white/50 text-xs font-semibold uppercase tracking-wide mb-2">
-                The Maximus Position
-              </p>
-              <p className="text-white text-xl font-bold leading-snug">
-                &ldquo;We didn&apos;t choose Claude because it was the most capable model.
-                We chose it because when the pressure came, it didn&apos;t blink.&rdquo;
-              </p>
-              <p className="text-gold text-sm mt-3 font-semibold">— Joel Winns, Founder</p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── LAYER 2: INTEGRITY MANDATE ── */}
-        <section className="bg-light py-20 sm:py-28">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-gold/20 text-gold-dark text-xs font-bold rounded-full tracking-wide uppercase">
-                Layer 2 — Joel Maximus Integrity Mandate
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-black text-navy mb-4 leading-tight">
-              Eight rules. Zero tolerance. Monthly audits.
-            </h2>
-            <p className="text-slate text-lg leading-relaxed mb-14 max-w-2xl">
-              The Joel Maximus Integrity Mandate governs every AI action in this system.
-              These aren&apos;t aspirational guidelines — they&apos;re enforced rules with
-              logged compliance and monthly verification.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {integrityMandate.map((rule) => (
-                <div
-                  key={rule.number}
-                  className="bg-white rounded-2xl p-6 border border-slate/15 group hover:border-gold/30 transition-colors"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl font-black text-navy/10 leading-none flex-shrink-0">
-                      {rule.number}
+        <Section tone="navy">
+          <Container wide>
+            <SectionHead
+              label="Layer 2: The Joel Maximus Integrity Mandate"
+              title="Eight rules. Zero tolerance for deception."
+              intro="The Integrity Mandate governs how every Maximus agent behaves. These are not aspirations; they are the rules every deployment is built and reviewed against."
+            />
+            <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {mandate.map(([t, d], i) => (
+                <li key={t} className="reveal" data-d={String((i % 4) + 1)}>
+                  <Glass className="h-full p-7">
+                    <span className="font-data text-2xl font-semibold text-white" style={{ textShadow: "0 0 20px rgba(0,180,216,.45)" }}>
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <div>
-                      <h3 className="text-navy font-bold text-base mb-2 group-hover:text-navy transition-colors">
-                        {rule.title}
-                      </h3>
-                      <p className="text-slate text-sm leading-relaxed">{rule.body}</p>
-                    </div>
-                  </div>
-                </div>
+                    <h3 className="font-head mt-4 text-lg font-semibold text-white">{t}</h3>
+                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/65">{d}</p>
+                  </Glass>
+                </li>
+              ))}
+            </ol>
+            <div className="reveal mx-auto mt-16 max-w-xl text-center">
+              <Beam className="mb-10" />
+              <p className="text-sm text-white/50">Author and guarantor of the Integrity Mandate</p>
+              <p className="font-head mt-2 text-2xl font-bold text-white">Joel Winns</p>
+              <p className="font-data mt-1 text-[12px] tracking-[0.14em] text-[#00B4D8]">FOUNDER AND CEO, MAXIMUS AI STRATEGIC ADVISORY</p>
+            </div>
+          </Container>
+        </Section>
+
+        <section className="relative overflow-hidden py-24 sm:py-32">
+          <div className="absolute inset-0">
+            <Image src="/media/gates.webp" alt="" fill sizes="100vw" className="object-cover" />
+          </div>
+          <div className="media-veil" style={{ background: "linear-gradient(180deg,#0A0E27 0%,rgba(6,9,24,.86) 25%,rgba(6,9,24,.9) 75%,#060918 100%)" }} />
+          <Container wide className="relative">
+            <SectionHead label="Layer 3: Safeguards" title="Trust is designed into the system, not added as a policy." intro="Every Maximus client deployment is built to these safeguards." />
+            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {safeguards.map(([t, d], i) => (
+                <Glass key={t} className="reveal p-7" style={{ transitionDelay: `${(i % 3) * 70}ms` }}>
+                  <h3 className="font-head text-lg font-semibold text-white">{t}</h3>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-white/65">{d}</p>
+                </Glass>
               ))}
             </div>
-
-            <div className="mt-12 p-8 rounded-2xl bg-navy text-center">
-              <p className="text-white/50 text-sm mb-3">Author &amp; Guarantor of the Integrity Mandate</p>
-              <p className="text-white text-2xl font-black mb-2">Joel Winns</p>
-              <p className="text-gold text-sm font-semibold">
-                Founder &amp; CEO, Maximus AI Strategic Advisory
-              </p>
-              <p className="text-white/50 text-sm mt-4 max-w-lg mx-auto">
-                Every client who deploys with Maximus has this mandate enforced on every AI action
-                taken on their behalf. Not as a policy — as a technical constraint.
-              </p>
-            </div>
-          </div>
+          </Container>
         </section>
 
-        {/* ── LAYER 3: TECHNICAL ENFORCEMENT ── */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-emerald-500/20 text-emerald-700 text-xs font-bold rounded-full tracking-wide uppercase">
-                Layer 3 — Technical Enforcement
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-black text-navy mb-4 leading-tight">
-              Trust isn&apos;t a policy here.
-              <br />
-              It&apos;s engineered into the architecture.
-            </h2>
-            <p className="text-slate text-lg leading-relaxed mb-14 max-w-2xl">
-              Six structural safeguards run continuously in the Maximus AI Operating System.
-              Each one makes ethical failure structurally harder — not just discouraged.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {technicalSafeguards.map((s) => (
-                <div
-                  key={s.title}
-                  className="rounded-2xl p-6 border border-slate/20 hover:border-emerald-300/50 transition-colors"
-                >
-                  <div className="text-3xl mb-4">{s.icon}</div>
-                  <h3 className="text-navy font-bold mb-3">{s.title}</h3>
-                  <p className="text-slate text-sm leading-relaxed">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CLIENT GUARANTEE ── */}
-        <section className="bg-navy py-20 sm:py-28">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/20 mb-8">
-              <span className="text-3xl">🛡</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-6 leading-tight">
-              Your AIOS Deployment Inherits All Three Layers.
-            </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
-              When Maximus builds an AI Operating System into your business, every component runs
-              under the same three-layer trust architecture. The ethical AI foundation. The Integrity
-              Mandate. The technical enforcement. Not optional extras — structural defaults.
-            </p>
-            <p className="text-white/50 text-lg font-bold italic mb-12">
-              &ldquo;Your business will never be compromised by an AI system that went rogue,
-              deceived someone, or acted without authorization. Not on our watch.&rdquo;
-            </p>
-            <CTAButton
-              href="/free-report"
-              size="xl"
-              micro="See what your competitive position looks like before deciding anything else."
-            >
-              $5,000 Business Intelligence Report... FREE
-            </CTAButton>
-          </div>
-        </section>
-
-        {/* ── GUARDIAN STUDY CALLOUT ── */}
-        <section className="bg-light py-16 sm:py-20">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-2xl p-8 border-l-4 border-red-500">
-              <p className="text-red-600 text-xs font-bold uppercase tracking-wide mb-3">
-                Why This Matters — Industry Context
-              </p>
-              <p className="text-navy font-black text-xl mb-4">
-                700 documented cases of AI deception and manipulation. And that&apos;s just the ones
-                they caught.
-              </p>
-              <p className="text-slate leading-relaxed mb-4">
-                A comprehensive study reviewed 700 cases where AI systems behaved deceptively,
-                manipulatively, or in ways contrary to their stated purpose — across enterprise
-                deployments worldwide. The pattern is consistent: systems optimized purely for
-                performance, without structural ethical constraints, drift toward deception when it
-                achieves their objective more efficiently.
-              </p>
-              <p className="text-navy font-semibold">
-                This is why Maximus doesn&apos;t treat ethics as a feature. It&apos;s the foundation.
+        <Section tone="dark">
+          <Container className="max-w-4xl text-center">
+            <div className="reveal">
+              <Label className="justify-center">Your deployment</Label>
+              <h2 className="h-display mt-6 text-3xl sm:text-5xl">Your Maximus deployment inherits all three layers.</h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+                When Maximus builds AI into your business, every component runs under the same standard: the principled foundation, the Integrity Mandate and the safeguards. Not optional extras. Defaults.
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* ── INTERNAL LINKS ── */}
-        <section className="bg-white py-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-navy font-bold text-center mb-8">Learn more about how Maximus works</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <div className="reveal mt-14 grid gap-4 text-left sm:grid-cols-3" data-d="2">
               {[
-                { href: "/about", label: "About Joel Winns", desc: "Why Maximus was built the way it was" },
-                { href: "/services", label: "Our Services", desc: "How we deliver intelligence" },
-                { href: "/free-report", label: "$5,000 Business Intelligence Report... FREE", desc: "Your competitive report in 48 hours" },
+                { href: "/about", label: "About Joel Winns", desc: "Why Maximus was built this way" },
+                { href: "/services", label: "Services", desc: "How we deliver intelligence" },
+                { href: "/free-report", label: "Free Competitive Edge Report", desc: "Your report in 48 hours" },
               ].map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="block rounded-xl border-2 border-slate/20 p-5 hover:border-gold/40 transition-colors group"
-                >
-                  <p className="text-navy font-bold group-hover:text-navy transition-colors">{l.label}</p>
-                  <p className="text-slate text-sm mt-1">{l.desc}</p>
+                <Link key={l.href} href={l.href} className="glass glass-hover block p-6">
+                  <span className="font-head font-semibold text-white">{l.label} →</span>
+                  <span className="mt-1.5 block text-sm text-white/55">{l.desc}</span>
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
-      </main>
+          </Container>
+        </Section>
 
+        <CTABand />
+      </main>
       <Footer />
     </>
   );

@@ -1,22 +1,28 @@
-// Maximus AI Strategic Advisory — About Page
-// Created: 2026-03-28
-// Joel Winns story, founding principle, named after son Maximus (US Marine MP)
+// About Joel Winns (2026-11 redesign). Founding principle, the name, the mission.
+// Employer is never named externally (standing rule). Statistics carry their source.
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import CTAButton from "../../components/CTAButton";
-import Link from "next/link";
+import { Beam, CTABand, Container, Glass, Label, Section } from "../../components/ui";
 
 export const metadata: Metadata = {
   title: "About Joel Winns — Founder, Maximus AI Strategic Advisory",
   description:
-    "Joel Winns founded Maximus AI on a principle: those who have the ability have the responsibility to help and protect those who can't. Named after his son Maximus, a US Marine Military Police officer.",
+    "Joel Winns founded Maximus AI on a principle: those who have the ability have the responsibility to help and protect those who can't. Named after his son Maximus, a United States Marine.",
   openGraph: {
     title: "About Joel Winns — Why Maximus Was Built",
-    description:
-      "The story behind Maximus AI: a founder who believed the largest unemployment event in human history could become the biggest financial opportunity — for the businesses willing to move first.",
+    description: "The story behind Maximus AI: bringing enterprise-grade strategy to the small and mid-size businesses large firms were never built to serve.",
   },
 };
+
+const background = [
+  { t: "Fractional Chief AI Officer", d: "Leads an AI build-out as fractional Chief AI Officer, bringing AI into one of the most relationship-driven industries in the country. Recipient of the Innovator of the Year Award from his company." },
+  { t: "The Agent Revolution", d: "Author of The Agent Revolution, a book on what AI agents mean for business and work. The argument: this is not just a technology shift, it is a transfer of power to the businesses that understand it first." },
+  { t: "Jupiter, Florida", d: "Based in Jupiter, Florida, with close knowledge of South Florida's small-business landscape. The same method works for businesses anywhere in the US." },
+  { t: "The Maximus Standard", d: "A-plus quality, accuracy and consistency on every deliverable. Nothing less is acceptable, because the businesses we serve deserve strategy at the highest level." },
+];
 
 export default function AboutPage() {
   const personSchema = {
@@ -24,220 +30,116 @@ export default function AboutPage() {
     "@type": "Person",
     name: "Joel Winns",
     jobTitle: "CEO and Founder",
-    worksFor: {
-      "@type": "Organization",
-      name: "Maximus AI Strategic Advisory",
-    },
-    description:
-      "Founder of Maximus AI Strategic Advisory. Former AI consultant at Communications Consulting Group. Author of The Agent Revolution. Based in Jupiter, Florida.",
+    image: "https://maximusintel.com/media/joel-founder.webp",
+    worksFor: { "@type": "Organization", name: "Maximus AI Strategic Advisory", url: "https://maximusintel.com" },
+    description: "Founder of Maximus AI Strategic Advisory and fractional Chief AI Officer. Author of The Agent Revolution. Based in Jupiter, Florida.",
     url: "https://maximusintel.com/about",
-    sameAs: ["https://maximusintel.com"],
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <Header />
-
-      <main className="pt-20">
-        {/* ── HERO ── */}
-        <section className="relative bg-navy py-20 sm:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-light opacity-80" />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl" />
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-gold text-sm font-bold tracking-[0.2em] uppercase mb-4">
-              About the Founder
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-8">
-              Why I Built{" "}
-              <span className="text-gradient">Maximus</span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl leading-relaxed">
-              The story starts with a principle I was raised with and a son whose name I chose to
-              carry forward. By{" "}
-              <strong className="text-white">Joel Winns</strong>, Founder &amp; CEO.
-            </p>
+      <main id="main">
+        {/* HERO: founder portrait + principle */}
+        <section className="relative overflow-hidden pb-20 pt-32 sm:pt-40 lg:pb-28">
+          <div className="absolute inset-0">
+            <Image src="/media/hero-ocean.webp" alt="" fill priority sizes="100vw" className="object-cover opacity-60" />
           </div>
-        </section>
-
-        {/* ── FOUNDING PRINCIPLE ── */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="p-8 rounded-2xl bg-navy mb-16 text-center">
-              <p className="text-white/40 text-sm font-semibold uppercase tracking-wide mb-4">
-                The Founding Principle
-              </p>
-              <p className="text-2xl sm:text-3xl font-black text-white leading-snug">
-                &ldquo;Those who have the ability have the responsibility to help and protect those
-                who can&apos;t help and protect themselves.&rdquo;
-              </p>
-            </div>
-
-            <div className="prose-maximus space-y-7 text-navy/80 text-lg leading-relaxed">
-              <p>
-                My son&apos;s name is Maximus. He&apos;s a United States Marine Military Police officer.
-                When he shipped out, I didn&apos;t name this company after him because it sounded
-                powerful. I named it after him because of what he represents: the willingness to step
-                forward when something needs protecting, regardless of the personal cost.
-              </p>
-
-              <p>
-                I built Maximus AI because I watched something happening that nobody in the business
-                world was being honest about.
-              </p>
-
-              <p>
-                AI is not coming for jobs. AI is already here — and the businesses that understand
-                it are quietly pulling away from those that don&apos;t. The gap is compounding
-                every month. And the businesses getting left behind aren&apos;t slow or stupid —
-                they&apos;re just operating without the intelligence that the enterprise world has
-                had for years.
-              </p>
-
-              <h2 className="text-2xl font-black text-navy mt-12 mb-6">
-                The Mission: Turn a Catastrophe Into an Opportunity
-              </h2>
-
-              <p>
-                The World Economic Forum projects 92 million jobs displaced by AI. Goldman Sachs
-                says 300 million. By any estimate, we are in the early stages of the largest
-                workforce disruption in human history.
-              </p>
-
-              <p>
-                Most people are treating that as a tragedy to manage. I see it differently.
-              </p>
-
-              <p>
-                The businesses that move first — the ones that build AI into their operations
-                before their competitors do — won&apos;t just survive this disruption. They&apos;ll
-                use it to achieve a competitive position they could never have reached otherwise.
-                The cost and capability structures are changing in their favor. The question is
-                whether they act on it.
-              </p>
-
-              <p>
-                That&apos;s the opportunity Maximus exists to capture. For the businesses we work with.
-              </p>
-
-              <h2 className="text-2xl font-black text-navy mt-12 mb-6">
-                Why Small Business — Not Enterprise
-              </h2>
-
-              <p>
-                Enterprise companies already have McKinsey. They already have BCG. They already
-                have armies of analysts, data teams, and competitive intelligence functions.
-              </p>
-
-              <p>
-                Small and mid-sized businesses have none of that. They compete on instinct,
-                relationships, and hustle. Which worked fine until their competitors started
-                deploying AI and the game changed overnight.
-              </p>
-
-              <p>
-                The intelligence that enterprise companies pay millions for — market analysis,
-                competitor monitoring, operational efficiency mapping — is now achievable for any
-                business at a fraction of the cost. But only if someone builds the system that
-                delivers it.
-              </p>
-
-              <p>
-                Maximus is that system.
-              </p>
-
-              <h2 className="text-2xl font-black text-navy mt-12 mb-6">
-                The Trust Problem I Refused to Ignore
-              </h2>
-
-              <p>
-                When I started building this, I quickly ran into the question that everyone in AI
-                consulting is avoiding: how do you trust a system making decisions about your
-                business?
-              </p>
-
-              <p>
-                I decided to answer it directly instead of hoping clients wouldn&apos;t ask. The
-                result is the{" "}
-                <Link href="/trust" className="text-navy font-bold underline hover:text-gold-dark transition-colors">
-                  Three-Layer Trust Architecture
-                </Link>{" "}
-                — an ethical AI foundation, an 8-point integrity mandate that I personally
-                guarantee, and technical enforcement that makes deception structurally difficult.
-              </p>
-
-              <p>
-                It&apos;s the most important thing we built. Not the intelligence engine. Not the
-                automation. The trust architecture.
-              </p>
-
-              <p className="text-navy font-semibold">
-                Because if you can&apos;t trust the system, you won&apos;t use it. And if you don&apos;t
-                use it, none of the capability matters.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── CCG BACKGROUND ── */}
-        <section className="bg-light py-16 sm:py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-black text-navy mb-8 text-center">
-              The Background That Shapes the Work
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                {
-                  label: "AI Consulting",
-                  body: "AI Consultant at Communications Consulting Group — the largest independent telecom consulting firm in the U.S., advocating for HOAs, COAs, and POAs. Brought AI into one of the most relationship-driven industries in the country.",
-                },
-                {
-                  label: "The Agent Revolution",
-                  body: "Author of The Agent Revolution — a book on AI&apos;s transformative impact on business and workforce. The argument: this isn&apos;t a technology shift. It&apos;s a power transfer — and the businesses who understand that get the power.",
-                },
-                {
-                  label: "Jupiter, Florida",
-                  body: "Based in Jupiter, FL. Deep market knowledge of South Florida&apos;s SMB landscape — medical spas, dental practices, home services, professional services. The same methodology that works here works nationally.",
-                },
-                {
-                  label: "The Standard",
-                  body: "Every deliverable from Maximus is held to one standard: would McKinsey sign their name to this? Not because we&apos;re trying to be McKinsey — but because the businesses we serve deserve analysis at that level. No exceptions.",
-                },
-              ].map((item) => (
-                <div key={item.label} className="bg-white rounded-2xl p-6 border border-slate/20">
-                  <h3 className="text-navy font-bold mb-3">{item.label}</h3>
-                  <p
-                    className="text-slate text-sm leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: item.body }}
-                  />
+          <div className="media-veil" style={{ background: "linear-gradient(180deg, rgba(6,9,24,.75) 0%, rgba(6,9,24,.55) 50%, #0A0E27 100%)" }} />
+          <Container wide className="relative">
+            <div className="grid items-end gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+              <div className="rise rise-2 relative mx-auto w-full max-w-sm lg:max-w-none">
+                <div className="img-frame relative aspect-[4/5] shadow-[0_40px_100px_rgba(0,0,0,.5)]">
+                  <Image src="/media/joel-founder.webp" alt="Joel Winns, founder and CEO of Maximus AI" fill priority sizes="(min-width:1024px) 35vw, 90vw" className="object-cover object-top" />
+                  <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#060918] to-transparent" />
+                  <div className="absolute bottom-5 left-6">
+                    <p className="font-head text-xl font-bold text-white">Joel Winns</p>
+                    <p className="font-data mt-1 text-[11px] tracking-[0.16em] text-[#00D4FF]">FOUNDER AND CEO</p>
+                  </div>
                 </div>
+              </div>
+              <div className="lg:pb-6">
+                <Label className="rise rise-1">About the founder</Label>
+                <h1 className="h-display rise rise-2 mt-6 text-[2.5rem] leading-[1.06] sm:text-6xl lg:text-[4rem]">
+                  Why I built <span className="text-beam">Maximus.</span>
+                </h1>
+                <blockquote className="rise rise-3 mt-9 border-l-2 border-[#00B4D8] pl-6">
+                  <p className="font-hero text-2xl italic leading-snug text-white sm:text-[2rem]">
+                    &ldquo;Those who have the ability have the responsibility to help and protect those who can&apos;t help and protect themselves.&rdquo;
+                  </p>
+                  <footer className="font-data mt-4 text-[12px] tracking-[0.14em] text-white/55">THE FOUNDING PRINCIPLE</footer>
+                </blockquote>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* STORY */}
+        <Section tone="navy">
+          <Container className="max-w-3xl">
+            <div className="prose-mx reveal text-lg text-white/75">
+              <h2>The name and the shield</h2>
+              <p>
+                My son&apos;s name is Maximus. He is a United States Marine, Military Police. I did not name this company after him because it sounded powerful. I named it after him because of what he represents: the willingness to step forward when something needs protecting, whatever the personal cost.
+              </p>
+              <p>
+                The shield in our logo is not decoration. It stands for that same idea: protecting business owners from being outpaced by competitors who move to AI first, and helping people whose work AI changes find their next opportunity.
+              </p>
+
+              <h2>What I saw happening</h2>
+              <p>
+                AI is not coming. It is already here, and the businesses that understand it are quietly pulling away from those that do not. The businesses being left behind are not slow. They are working without the strategy and intelligence that large companies have bought for decades.
+              </p>
+              <p>
+                The World Economic Forum&apos;s Future of Jobs Report 2025 projects 92 million jobs displaced and 170 million created by 2030 as technology and other forces reshape work.{" "}
+                <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">
+                  Source: World Economic Forum
+                </a>
+                . Most people treat that as a disruption to survive. I see the businesses that move first using it to reach a position they could never have reached otherwise.
+              </p>
+
+              <h2>Why small business, not enterprise</h2>
+              <p>
+                Large companies already have consulting firms, analyst teams and competitive intelligence departments. Small and mid-size businesses compete on instinct, relationships and hustle, which worked until their competitors started using AI.
+              </p>
+              <p>
+                The market analysis, competitor monitoring and operational mapping that large companies pay so much for can now be delivered to any business at a fraction of the cost and time. Someone has to build the system that does it, and hold it to a standard business owners can trust. That is Maximus.
+              </p>
+
+              <h2>The trust problem I refused to ignore</h2>
+              <p>
+                Early on I ran into the question much of the AI industry avoids: how do you trust a system that makes recommendations about your business? I decided to answer it directly. The result is our{" "}
+                <Link href="/trust">three-layer trust standard</Link>: principled AI foundations, an 8-point Integrity Mandate that I personally stand behind, and safeguards built into every deployment.
+              </p>
+              <p>
+                <strong>If you cannot trust the system, you will not use it. And if you do not use it, none of the capability matters.</strong>
+              </p>
+            </div>
+          </Container>
+        </Section>
+
+        {/* BACKGROUND */}
+        <Section tone="dark" hex>
+          <Container wide>
+            <div className="reveal text-center">
+              <Label className="justify-center">Background</Label>
+              <h2 className="h-display mt-5 text-3xl sm:text-5xl">The experience that shapes the work.</h2>
+            </div>
+            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {background.map((b, i) => (
+                <Glass key={b.t} className="reveal p-7" style={{ transitionDelay: `${i * 70}ms` }}>
+                  <h3 className="font-head text-lg font-semibold text-white">{b.t}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-white/65">{b.d}</p>
+                </Glass>
               ))}
             </div>
-          </div>
-        </section>
+            <Beam className="mx-auto mt-20 max-w-2xl" />
+          </Container>
+        </Section>
 
-        {/* ── CTA ── */}
-        <section className="bg-navy py-20 sm:py-28 text-center">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
-              If this resonates, the first step is free.
-            </h2>
-            <p className="text-white/70 text-lg leading-relaxed mb-10">
-              A competitive intelligence report showing exactly where you stand, who&apos;s
-              threatening your position, and your highest-leverage moves. 48 hours. No cost.
-              No commitment.
-            </p>
-            <CTAButton href="/free-report" size="xl" micro="No sales call. No credit card. Just your report.">
-              $5,000 Business Intelligence Report... FREE
-            </CTAButton>
-          </div>
-        </section>
+        <CTABand title="If this resonates, the first step is free." image="/media/hero-horizon.webp" />
       </main>
-
       <Footer />
     </>
   );

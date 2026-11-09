@@ -1,64 +1,29 @@
-// Programmatic SEO: AI Consulting West Palm Beach
-// Created: 2026-03-28
 import type { Metadata } from "next";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import CTAButton from "../../../components/CTAButton";
-import Link from "next/link";
+import LocationPage from "../../../components/LocationPage";
 
 export const metadata: Metadata = {
   title: "AI Consulting West Palm Beach FL — Maximus AI Strategic Advisory",
-  description: "AI consulting for West Palm Beach businesses. Competitive intelligence, AI strategy, and market analysis for WPB SMBs. Free competitive intelligence report in 48 hours.",
+  description: "AI consulting for West Palm Beach businesses: competitive intelligence, AI strategy and market analysis for WPB small and mid-size businesses. Free report in 48 hours.",
 };
 
-export default function WPBPage() {
+export default function Page() {
   return (
-    <>
-      <Header />
-      <main className="pt-20">
-        <section className="bg-navy py-20 sm:py-28 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-light opacity-80" />
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-gold text-sm font-bold tracking-[0.2em] uppercase mb-4">West Palm Beach, Florida</p>
-            <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
-              AI Consulting for West Palm Beach Businesses
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
-              Palm Beach County&apos;s largest city. The most diverse competitive landscape in South Florida.
-              Know your market before your competitors do.
-            </p>
-            <CTAButton href="/free-report" size="xl" micro="Free. 48-hour delivery. WPB market intel.">
-              $5,000 Business Intelligence Report... FREE
-            </CTAButton>
-          </div>
-        </section>
-        <section className="bg-white py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-black text-navy mb-6">West Palm Beach: High Competition, High Opportunity</h2>
-            <p className="text-slate text-lg leading-relaxed mb-6">
-              WPB is Palm Beach County&apos;s business hub — home to the region&apos;s largest concentration of professional services, healthcare, hospitality, and retail businesses. The competitive intelligence advantage is enormous for the first businesses in each vertical to deploy AI systematically.
-            </p>
-            <div className="flex flex-wrap gap-3 mt-8">
-              {[
-                { href: "/locations/ai-consulting-jupiter-fl", label: "Jupiter FL" },
-                { href: "/locations/ai-consulting-palm-beach-gardens", label: "Palm Beach Gardens" },
-                { href: "/locations/ai-strategy-south-florida", label: "South Florida" },
-              ].map((l) => (
-                <Link key={l.href} href={l.href} className="px-4 py-2 rounded-lg border border-slate/20 text-navy text-sm hover:border-gold/40 transition-colors">
-                  AI Consulting — {l.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="bg-navy py-16 text-center">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-black text-white mb-6">Dominate your WPB market — start free.</h2>
-            <CTAButton href="/free-report" size="lg" micro="No credit card. No sales call.">$5,000 Business Intelligence Report... FREE</CTAButton>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+    <LocationPage
+      self="/locations/ai-consulting-west-palm-beach"
+      label="AI consulting · West Palm Beach"
+      title={<>AI consulting for West Palm Beach businesses.</>}
+      intro="Palm Beach County's largest city and one of South Florida's most varied competitive landscapes. Know your market before your competitors do."
+      marketTitle="High competition. High opportunity."
+      market={
+        <>
+          <p>West Palm Beach is Palm Beach County&apos;s business hub, with a deep concentration of professional services, healthcare, hospitality and retail. In each of those categories, the first businesses to use AI systematically gain an edge that is hard to catch.</p>
+          <p>Maximus shows you where you stand against the businesses you actually compete with, and which moves matter most.</p>
+        </>
+      }
+      receives={["Competitor analysis for your WPB category", "AI visibility check", "Revenue opportunity map", "A prioritized 90-day plan"]}
+      industries={["Professional services", "Healthcare", "Hospitality", "Retail", "Real estate", "Legal"]}
+      areas={["West Palm Beach", "Downtown WPB", "Palm Beach", "Lake Worth Beach", "Royal Palm Beach"]}
+      closing="Lead your West Palm Beach market. Start free."
+    />
   );
 }

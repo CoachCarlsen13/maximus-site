@@ -7,13 +7,13 @@ import type { Metadata } from "next";
 import DisplacementTracker from "./DisplacementTracker";
 
 export const metadata: Metadata = {
-  title: "AI Displacement Tracker | Maximus AI Strategic Advisory",
+  title: "AI Displacement Tracker",
   description:
-    "Live tracking of AI investment spending vs AI-driven job displacement. Real-time data on layoffs, infrastructure spending, and workforce impact. Updated daily.",
+    "Tracking announced AI investment against AI-related workforce reductions, from public filings, earnings calls and news reports.",
   openGraph: {
     title: "AI Displacement Tracker — Live Data",
     description:
-      "Track the real-time impact of AI on the workforce. Billions invested. Hundreds of thousands displaced. The numbers tell the story.",
+      "Announced AI investment against AI-related job losses, with a source on every event.",
     url: "https://maximusintel.com/displacement",
     type: "website",
   },
@@ -33,7 +33,7 @@ const displacementSchema = {
   "@type": "Dataset",
   name: "AI Displacement Tracker",
   description:
-    "Real-time tracking of AI infrastructure investment announcements and AI-driven workforce displacement events. Data sourced from public filings, earnings calls, news reports, and government statistics.",
+    "AI infrastructure investment announcements and AI-related workforce displacement events, sourced from public filings, earnings calls and news reports.",
   url: "https://maximusintel.com/displacement",
   creator: {
     "@type": "Organization",

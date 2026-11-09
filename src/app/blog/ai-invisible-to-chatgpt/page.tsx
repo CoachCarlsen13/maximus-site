@@ -1,141 +1,101 @@
 import type { Metadata } from "next";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import CTAButton from "../../../components/CTAButton";
+import Article, { Source } from "../../../components/Article";
 
 export const metadata: Metadata = {
-  title: "Why Your Business Is Invisible to ChatGPT — And How to Fix It | Maximus AI",
-  description:
-    "When someone asks AI 'what's the best [your service] in [your city],' does your business appear? Most don't. Here's the data on AI visibility and what changes it.",
+  title: "Why Your Business Is Invisible to ChatGPT — And How to Fix It",
+  description: "When someone asks AI for the best provider in your city, does your business appear? What drives AI visibility, and five things you can do today.",
   robots: { index: true, follow: true },
   openGraph: {
     title: "Why Your Business Is Invisible to ChatGPT",
-    description: "Most businesses don't appear in AI-generated answers. Here's why — and what to do about it.",
+    description: "What drives AI visibility, and what to do about it.",
     type: "article",
     publishedTime: "2026-04-03",
-    authors: ["Joel Winn"],
+    authors: ["Joel Winns"],
+    images: [{ url: "/media/blog-invisible.webp" }],
   },
 };
 
-const articleSchema = {
+const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: "Why Your Business Is Invisible to ChatGPT — And How to Fix It",
-  author: { "@type": "Person", name: "Joel Winn" },
-  publisher: {
-    "@type": "Organization",
-    name: "Maximus AI Strategic Advisory",
-    url: "https://maximusintel.com",
-  },
+  author: { "@type": "Person", name: "Joel Winns" },
+  publisher: { "@type": "Organization", name: "Maximus AI Strategic Advisory", url: "https://maximusintel.com" },
   datePublished: "2026-04-03",
-  dateModified: "2026-04-03",
-  description: "When someone asks AI the best provider in your city, does your business appear? Most don't. Here's the data and what to do.",
+  dateModified: "2026-11-08",
+  image: "https://maximusintel.com/media/blog-invisible.webp",
+  description: "What drives AI visibility for local businesses, and five things you can do today.",
   mainEntityOfPage: "https://maximusintel.com/blog/ai-invisible-to-chatgpt",
 };
 
 export default function ArticlePage() {
   return (
-    <>
-      <Header />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+    <Article
+      category="AI visibility (AEO)"
+      title="Why your business is invisible to ChatGPT, and how to fix it"
+      date="April 3, 2026 · updated Nov 8, 2026"
+      read="7 min read"
+      image="/media/blog-invisible.webp"
+      schema={schema}
+      cta={{ title: "Get your AI visibility checked", body: "Your free Competitive Edge Report includes an AI visibility check: whether AI answer engines recommend you or your competitors, and what to fix first. No sales call required." }}
+    >
+      <p className="!text-xl !leading-relaxed text-white/85">
+        When a potential customer asks ChatGPT, Perplexity or Google&apos;s AI for &ldquo;the best medical spa in Jupiter, FL,&rdquo; does your business appear in the answer?
+      </p>
+      <p>
+        For many local businesses, the honest answer is no, and most owners have never checked. As more people start their search with an AI assistant instead of a list of links, that invisibility is turning into lost customers. Gartner predicted that traditional search engine volume would drop 25% by 2026 as people move to AI chatbots and other virtual agents.{" "}
+        <Source href="https://www.gartner.com/en/newsroom/press-releases/2024-02-19-gartner-predicts-search-engine-volume-will-drop-25-percent-by-2026-due-to-ai-chatbots-and-other-virtual-agents">Gartner, Feb 2024</Source>
+      </p>
 
-      <main className="pt-20">
-        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="mb-10">
-            <span className="px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-bold">
-              AI Visibility (AEO)
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-black text-navy mt-4 mb-4 leading-tight">
-              Why Your Business Is Invisible to ChatGPT — And How to Fix It
-            </h1>
-            <div className="flex items-center gap-4 text-slate text-sm">
-              <span>Joel Winn</span>
-              <span className="w-1 h-1 rounded-full bg-slate/40" />
-              <span>April 3, 2026</span>
-              <span className="w-1 h-1 rounded-full bg-slate/40" />
-              <span>8 min read</span>
-            </div>
-          </div>
+      <h2>The shift from SEO to AEO</h2>
+      <p>
+        Traditional SEO optimized for Google&apos;s link-based results: backlinks, meta tags, keyword-rich pages. That still matters, but a new layer now sits on top of it.
+      </p>
+      <p>
+        <strong>Answer Engine Optimization (AEO)</strong> is the practice of structuring your digital presence so AI systems can find, understand and recommend your business. That includes ChatGPT, Perplexity, Google&apos;s AI Overviews, Claude, Gemini and Grok.
+      </p>
+      <p>
+        These systems build their answers from many sources at once: structured data, review sites, directories, social profiles and content that shows real expertise. If your information is thin, inconsistent or hard for machines to read, you are less likely to be part of the answer.
+      </p>
 
-          <div className="prose prose-lg prose-navy max-w-none">
-            <p className="text-xl text-slate leading-relaxed">
-              When a potential customer asks ChatGPT, Perplexity, or Google AI Overview
-              &quot;what&apos;s the best medical spa in Jupiter, FL&quot; — does your business appear in the answer?
-            </p>
-            <p>
-              For 87% of local businesses, the answer is no. They are completely invisible to AI-generated recommendations.
-              And as AI search grows to represent over 40% of discovery queries in 2026, that invisibility is becoming
-              an existential business risk.
-            </p>
+      <h2>What makes a business visible to AI?</h2>
+      <p>In our work on AI visibility, five factors come up again and again:</p>
+      <ol>
+        <li>
+          <strong>Structured data.</strong> Schema.org markup (JSON-LD) that tells machines exactly what your business does, where it is and what it offers.
+        </li>
+        <li>
+          <strong>Consistent name, address and phone everywhere.</strong> The same details across your Google Business Profile, Yelp, industry directories and social profiles.
+        </li>
+        <li>
+          <strong>Review volume and recency.</strong> A steady stream of recent, specific reviews tells every system, human or AI, that you are active and trusted.
+        </li>
+        <li>
+          <strong>Content that shows expertise.</strong> Pages that answer real customer questions in depth, not keyword filler.
+        </li>
+        <li>
+          <strong>AI crawler access.</strong> Some sites block AI crawlers such as GPTBot, ClaudeBot or PerplexityBot in robots.txt without knowing it.
+        </li>
+      </ol>
 
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">The Shift from SEO to AEO</h2>
-            <p>
-              Traditional SEO optimized for Google&apos;s link-based results. You ranked by building backlinks,
-              optimizing meta tags, and writing keyword-rich content. That still matters — but a new layer has
-              emerged on top of it.
-            </p>
-            <p>
-              <strong>Answer Engine Optimization (AEO)</strong> is the practice of structuring your digital presence
-              so AI systems can find, understand, and recommend your business. This includes ChatGPT, Perplexity,
-              Google AI Overviews, Claude, and emerging platforms like Grok and Gemini.
-            </p>
-            <p>
-              These systems don&apos;t crawl your website the way Google does. They synthesize information from
-              structured data, review sites, directories, social profiles, and content that demonstrates
-              expertise. If your information isn&apos;t structured for AI consumption, you simply don&apos;t exist
-              in the AI&apos;s mental model of your market.
-            </p>
-
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">What Makes a Business &quot;Visible&quot; to AI?</h2>
-            <p>Our analysis of over 200 local businesses across 12 industries reveals five factors that drive AI visibility:</p>
-            <ol className="space-y-3">
-              <li><strong>Schema.org structured data</strong> — JSON-LD markup that tells AI exactly what your business does, where it is, and what services you offer.</li>
-              <li><strong>Consistent NAP across 40+ directories</strong> — Name, Address, Phone consistency across Google Business Profile, Yelp, industry directories, and social platforms.</li>
-              <li><strong>Review volume and recency</strong> — AI systems weight businesses with 50+ recent reviews significantly higher than those with 10 outdated ones.</li>
-              <li><strong>Topical authority content</strong> — Long-form content that demonstrates genuine expertise, not keyword-stuffed filler. AI can tell the difference.</li>
-              <li><strong>AI crawler access</strong> — Many businesses inadvertently block AI crawlers (GPTBot, ClaudeBot, PerplexityBot) in their robots.txt without knowing it.</li>
-            </ol>
-
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">The Cost of AI Invisibility</h2>
-            <p>
-              Gartner projects that by 2028, 60% of web traffic from organic search will disappear as consumers
-              shift to AI-generated answers. Businesses that appear in AI responses will capture that demand.
-              Those that don&apos;t will watch their inbound leads evaporate without understanding why.
-            </p>
-            <p>
-              This isn&apos;t a future problem. It&apos;s happening now. Our clients consistently report that
-              AI-generated referrals convert at 3-5x the rate of traditional search traffic — because the
-              customer arrives pre-qualified by the AI&apos;s recommendation.
-            </p>
-
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">What You Can Do Today</h2>
-            <ol className="space-y-3">
-              <li><strong>Audit your AI visibility</strong> — Ask ChatGPT, Perplexity, and Google AI Overview for your service in your city. See if you appear.</li>
-              <li><strong>Check your robots.txt</strong> — Make sure you&apos;re not blocking GPTBot, ClaudeBot, or other AI crawlers.</li>
-              <li><strong>Add Schema.org markup</strong> — LocalBusiness, Service, FAQ, and Review schema at minimum.</li>
-              <li><strong>Claim and optimize all directories</strong> — Not just Google Business Profile. Yelp, industry-specific directories, and emerging AI-connected platforms.</li>
-              <li><strong>Create expert content</strong> — AI systems are trained to recognize genuine expertise. Write what you actually know, not what a keyword tool tells you to write.</li>
-            </ol>
-
-            <div className="bg-light rounded-2xl p-8 mt-12 border border-slate/20">
-              <h3 className="text-xl font-black text-navy mb-3">Get Your Free AI Visibility Score</h3>
-              <p className="text-slate mb-6">
-                We query 6 AI platforms for your business, score your visibility across 40+ signals,
-                and deliver a competitive intelligence report showing exactly where you stand and what to fix.
-                No sales call required.
-              </p>
-              <CTAButton href="/free-report" size="lg" micro="Free report. No sales call.">
-                Get Your Free Report
-              </CTAButton>
-            </div>
-          </div>
-        </article>
-      </main>
-
-      <Footer />
-    </>
+      <h2>What you can do today</h2>
+      <ol>
+        <li>
+          <strong>Check your AI visibility.</strong> Ask ChatGPT, Perplexity and Google&apos;s AI for your service in your city, the way a customer would. Note who appears.
+        </li>
+        <li>
+          <strong>Check your robots.txt.</strong> Make sure you are not blocking the AI crawlers you want to be found by.
+        </li>
+        <li>
+          <strong>Add structured data.</strong> LocalBusiness, Service and FAQ schema at a minimum.
+        </li>
+        <li>
+          <strong>Claim and clean up your listings.</strong> Not just Google Business Profile: Yelp and the directories that matter in your industry.
+        </li>
+        <li>
+          <strong>Publish what you actually know.</strong> Answer the questions customers ask you every week, in your own words.
+        </li>
+      </ol>
+    </Article>
   );
 }

@@ -1,179 +1,105 @@
 import type { Metadata } from "next";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import CTAButton from "../../../components/CTAButton";
+import Article, { Source } from "../../../components/Article";
 
 export const metadata: Metadata = {
-  title: "The Hidden Cost of Manual Processes (And the AI That Eliminates Them) | Maximus AI",
-  description:
-    "The average SMB spends 40% of labor costs on tasks AI handles for pennies. Here's the math of automation — and which processes to target first.",
+  title: "The Hidden Cost of Manual Processes (And the AI That Eliminates Them)",
+  description: "How to put a number on repeatable manual work, the five processes that usually pay back fastest, and how to avoid the AI tool trap.",
   robots: { index: true, follow: true },
   openGraph: {
     title: "The Hidden Cost of Manual Processes",
-    description: "The average SMB spends 40% of labor costs on repetitive tasks AI can handle. Here's the math and where to start.",
+    description: "Put a number on repeatable manual work, then fix the most expensive part first.",
     type: "article",
     publishedTime: "2026-04-03",
-    authors: ["Joel Winn"],
+    authors: ["Joel Winns"],
+    images: [{ url: "/media/blog-manual.webp" }],
   },
 };
 
-const articleSchema = {
+const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: "The Hidden Cost of Manual Processes (And the AI That Eliminates Them)",
-  author: { "@type": "Person", name: "Joel Winn" },
-  publisher: {
-    "@type": "Organization",
-    name: "Maximus AI Strategic Advisory",
-    url: "https://maximusintel.com",
-  },
+  author: { "@type": "Person", name: "Joel Winns" },
+  publisher: { "@type": "Organization", name: "Maximus AI Strategic Advisory", url: "https://maximusintel.com" },
   datePublished: "2026-04-03",
-  dateModified: "2026-04-03",
-  description: "The average SMB spends 40% of labor costs on repetitive tasks AI handles for pennies. The automation math is compelling.",
+  dateModified: "2026-11-08",
+  image: "https://maximusintel.com/media/blog-manual.webp",
+  description: "How to put a number on repeatable manual work, and the five processes that usually pay back fastest.",
   mainEntityOfPage: "https://maximusintel.com/blog/hidden-cost-manual-processes",
 };
 
 export default function ArticlePage() {
   return (
-    <>
-      <Header />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+    <Article
+      category="Business operations"
+      title="The hidden cost of manual processes, and the AI that removes them"
+      date="April 3, 2026 · updated Nov 8, 2026"
+      read="6 min read"
+      image="/media/blog-manual.webp"
+      schema={schema}
+      cta={{ title: "Find your hidden cost", body: "The AI Operational Audit maps your processes, sizes the cost of each and gives you a roadmap ranked by return. Start with the free Competitive Edge Report to see where you stand." }}
+    >
+      <p className="!text-xl !leading-relaxed text-white/85">
+        Most businesses spend a large share of paid hours on repeatable manual tasks. Owners rarely see it, because the cost is spread across every role, every department and every day.
+      </p>
 
-      <main className="pt-20">
-        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="mb-10">
-            <span className="px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-bold">
-              Business Operations
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-black text-navy mt-4 mb-4 leading-tight">
-              The Hidden Cost of Manual Processes (And the AI That Eliminates Them)
-            </h1>
-            <div className="flex items-center gap-4 text-slate text-sm">
-              <span>Joel Winn</span>
-              <span className="w-1 h-1 rounded-full bg-slate/40" />
-              <span>April 3, 2026</span>
-              <span className="w-1 h-1 rounded-full bg-slate/40" />
-              <span>6 min read</span>
-            </div>
-          </div>
+      <h2>The cost you do not see</h2>
+      <p>
+        Think about what happens when a new lead fills in your website form. Someone sees the notification, reads it, decides whether it is qualified, types it into the CRM, drafts a reply and sends it. That can take ten minutes or more per lead, and it repeats all day.
+      </p>
+      <p>Now add scheduling, reporting, data entry, invoices, appointment confirmations, review replies, social posts, competitor checks and onboarding paperwork.</p>
 
-          <div className="prose prose-lg prose-navy max-w-none">
-            <p className="text-xl text-slate leading-relaxed">
-              The average small-to-mid-size business spends roughly 40% of its labor costs on repetitive,
-              manual tasks that AI can handle at a fraction of the cost. Most owners don&apos;t see it
-              because these costs are distributed across every department, every role, every day.
-            </p>
+      <h2>Put a number on it</h2>
+      <p>Here is a worked example for a 20-person business. Swap in your own numbers; the method matters more than our example.</p>
+      <div className="not-prose my-8 rounded-xl border border-[#00B4D8]/20 bg-[#060918]/70 p-6">
+        <p className="font-data mb-3 text-[11px] tracking-[0.15em] text-[#FFA500]">WORKED EXAMPLE · ESTIMATE</p>
+        <p className="font-data !mb-0 text-[14px] leading-7 text-[#E0F7FF]">
+          20 people × $25/hr × 2,080 hrs = $1,040,000 total labor
+          <br />
+          If 30% of hours are repeatable admin = $312,000 a year
+          <br />
+          If AI takes on half of that = $156,000 of capacity freed
+          <br />
+          Minus AI tooling and setup (your quote) = your net
+        </p>
+      </div>
+      <p>
+        The two percentages are the assumptions that matter. Measure them in your own business before you trust anyone&apos;s figure, including ours. That is what an audit is for.
+      </p>
 
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">The Invisible 40%</h2>
-            <p>
-              Think about what happens when a new lead fills out a contact form on your website. Someone
-              has to see the notification, open the form, read it, decide if it&apos;s qualified, enter
-              the data into your CRM, draft a response, and send it. That process takes 10-15 minutes
-              per lead and happens dozens of times per day at scale.
-            </p>
-            <p>
-              Now multiply that by every manual process in your business: scheduling, reporting, data entry,
-              invoice processing, appointment confirmations, review responses, social media posting,
-              competitor monitoring, compliance checks, and employee onboarding tasks.
-            </p>
-            <p>
-              For a business with 20 employees, the math looks like this:
-            </p>
-            <div className="bg-light rounded-xl p-6 my-6 border border-slate/20">
-              <p className="font-mono text-sm text-navy">
-                20 employees x $25/hr avg x 2,080 hrs/yr = <strong>$1,040,000</strong> total labor<br />
-                40% on manual/repetitive tasks = <strong>$416,000/year</strong> on automatable work<br />
-                AI automation of 60% of that = <strong>$249,600 annual savings</strong><br />
-                AI tooling cost = <strong>$12,000-$36,000/year</strong><br />
-                <span className="text-green-600 font-bold">Net savings: $213,600-$237,600/year</span>
-              </p>
-            </div>
-            <p>
-              Those numbers are conservative. Many of our clients discover the actual manual process
-              burden is closer to 50-55% when they audit every workflow.
-            </p>
+      <h2>Five processes that usually pay back first</h2>
+      <h3>1. Lead response and qualification</h3>
+      <p>
+        Speed matters. In the Lead Response Management study by James Oldroyd (MIT) and InsideSales.com, the odds of qualifying a lead were 21 times higher when the lead was contacted within 5 minutes than within 30.{" "}
+        <Source href="https://www.cmswire.com/cms/customer-experience/insidesalescom-report-advises-quick-response-time-of-online-leads-equals-sales-021037.php">CMSWire on the InsideSales.com study</Source> AI can reply and qualify in seconds, any hour of the day.
+      </p>
+      <h3>2. Scheduling and reminders</h3>
+      <p>Calendar wrangling, confirmations and reschedules eat staff time. Automated reminders that adapt to how each client prefers to be contacted cut the back-and-forth.</p>
+      <h3>3. Competitor monitoring</h3>
+      <p>Most businesses do not do this at all. Ongoing monitoring of competitor pricing, offers and reviews turns a blind spot into a weekly briefing.</p>
+      <h3>4. Reports and analysis</h3>
+      <p>The weekly KPI pack that takes someone half a day can be assembled automatically, with people spending their time on what the numbers mean.</p>
+      <h3>5. Content and social media</h3>
+      <p>AI handles the first draft in your brand voice; your people add the expertise and personality that make it worth reading.</p>
 
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">The 5 Highest-ROI Processes to Automate First</h2>
-            <p>
-              Not all automation delivers equal returns. Based on our operational audits across 50+ SMBs,
-              these five processes consistently deliver the fastest payback:
-            </p>
-
-            <h3 className="text-xl font-bold text-navy mt-8 mb-3">1. Lead Response and Qualification</h3>
-            <p>
-              <strong>Manual cost:</strong> 15 min/lead x 20 leads/day = 5 hours/day = $32,500/year<br />
-              <strong>AI cost:</strong> $200-500/month for AI-powered lead routing and auto-response<br />
-              <strong>Bonus:</strong> Response time drops from hours to seconds. Harvard Business Review found
-              that responding within 5 minutes makes you 21x more likely to qualify a lead.
-            </p>
-
-            <h3 className="text-xl font-bold text-navy mt-8 mb-3">2. Appointment Scheduling and Confirmation</h3>
-            <p>
-              <strong>Manual cost:</strong> Staff time managing calendars, sending reminders, handling reschedules<br />
-              <strong>AI cost:</strong> $100-300/month for AI scheduling with natural language processing<br />
-              <strong>Bonus:</strong> No-show rates drop 30-40% with AI-powered reminder sequences that
-              adapt timing and channel based on patient/client behavior patterns.
-            </p>
-
-            <h3 className="text-xl font-bold text-navy mt-8 mb-3">3. Competitive Intelligence Monitoring</h3>
-            <p>
-              <strong>Manual cost:</strong> Most businesses simply don&apos;t do this — they fly blind<br />
-              <strong>AI cost:</strong> $500-2,000/month for automated competitive monitoring<br />
-              <strong>Bonus:</strong> Daily intelligence on competitor pricing, new offerings, review sentiment,
-              and market positioning. Information that used to require a McKinsey engagement at $50K+.
-            </p>
-
-            <h3 className="text-xl font-bold text-navy mt-8 mb-3">4. Report Generation and Analysis</h3>
-            <p>
-              <strong>Manual cost:</strong> 3-8 hours/week assembling dashboards, KPI reports, financial summaries<br />
-              <strong>AI cost:</strong> $200-500/month for automated reporting<br />
-              <strong>Bonus:</strong> Reports that used to take a full day now generate in minutes with
-              trend analysis and anomaly detection built in.
-            </p>
-
-            <h3 className="text-xl font-bold text-navy mt-8 mb-3">5. Content Creation and Social Media</h3>
-            <p>
-              <strong>Manual cost:</strong> $3,000-8,000/month for a marketing coordinator or agency<br />
-              <strong>AI cost:</strong> $500-1,500/month for AI-assisted content production<br />
-              <strong>Bonus:</strong> 5-10x content volume with consistent brand voice. AI handles the
-              first draft; humans add the expertise and personality that makes it authentic.
-            </p>
-
-            <h2 className="text-2xl font-black text-navy mt-10 mb-4">The Implementation Trap</h2>
-            <p>
-              The biggest mistake we see isn&apos;t failing to adopt AI — it&apos;s adopting it wrong.
-              Businesses buy 5 different AI tools, none of which talk to each other, and end up with
-              <em>more</em> manual work managing the tools than they saved by using them.
-            </p>
-            <p>
-              The right approach is systematic:
-            </p>
-            <ol className="space-y-2">
-              <li><strong>Audit first</strong> — Map every process, measure time and cost, identify the highest-leverage targets.</li>
-              <li><strong>Prioritize by ROI</strong> — Start with the process that saves the most money with the least implementation complexity.</li>
-              <li><strong>Integrate, don&apos;t stack</strong> — Choose tools that connect to your existing systems. A CRM that talks to your AI assistant is worth 10 standalone tools.</li>
-              <li><strong>Measure relentlessly</strong> — Define success metrics before implementation, measure weekly, adjust monthly.</li>
-            </ol>
-
-            <div className="bg-light rounded-2xl p-8 mt-12 border border-slate/20">
-              <h3 className="text-xl font-black text-navy mb-3">Find Your Hidden 40%</h3>
-              <p className="text-slate mb-6">
-                Our AI Operational Audit identifies every automatable process in your business,
-                calculates the ROI of automation, and delivers a prioritized implementation roadmap.
-                Start with the free Competitive Edge Report to see where you stand.
-              </p>
-              <CTAButton href="/free-report" size="lg" micro="Free report. No sales call.">
-                Get Your Free Report
-              </CTAButton>
-            </div>
-          </div>
-        </article>
-      </main>
-
-      <Footer />
-    </>
+      <h2>The implementation trap</h2>
+      <p>
+        The most common mistake is not failing to adopt AI. It is adopting it badly: five tools that do not talk to each other, and more manual work managing them than they save. The right approach is systematic:
+      </p>
+      <ol>
+        <li>
+          <strong>Audit first.</strong> Map the processes, measure time and cost, find the highest-leverage targets.
+        </li>
+        <li>
+          <strong>Rank by return.</strong> Start where the savings are largest and the effort smallest.
+        </li>
+        <li>
+          <strong>Integrate, do not stack.</strong> Choose tools that connect to the systems you already use.
+        </li>
+        <li>
+          <strong>Measure.</strong> Define success before you start, check weekly, adjust monthly.
+        </li>
+      </ol>
+    </Article>
   );
 }

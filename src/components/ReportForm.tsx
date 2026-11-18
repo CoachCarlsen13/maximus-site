@@ -4,6 +4,8 @@
 
 import { useState, type FormEvent } from "react";
 
+const FALLBACK_EMAIL = "joel@maximusintel.com";
+
 export default function ReportForm() {
   const [form, setForm] = useState({
     businessName: "",
@@ -15,6 +17,8 @@ export default function ReportForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [viaEmailApp, setViaEmailApp] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -22,43 +26,45 @@ export default function ReportForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
+  function openMailDraft() {
+    const subject = encodeURIComponent(
+      `Free competitive intelligence report request: ${form.businessName}`,
+    );
+    const body = encodeURIComponent(
+      [
+        `Business: ${form.businessName}`,
+        `Website: ${form.website}`,
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        form.phone ? `Phone: ${form.phone}` : "",
+        form.challenge ? `Challenge: ${form.challenge}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    );
+    window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setSubmitting(true);
-
+    let saved = false;
     try {
-      const apiBase =
-        process.env.NEXT_PUBLIC_API_URL ||
-        "https://command-center-production-ffc0.up.railway.app";
-
-      const res = await fetch(`${apiBase}/api/leads/trojan-horse`, {
+      const res = await fetch("/api/health-check-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          businessName: form.businessName,
-          websiteUrl: form.website,
-          contactName: form.name,
-          email: form.email,
-          phone: form.phone || undefined,
-          challenge: form.challenge || undefined,
-        }),
+        body: JSON.stringify({ ...form, company_url_confirm: honeypot }),
       });
-
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body?.error || `HTTP ${res.status}`);
-      }
-
-      setSubmitted(true);
-    } catch (err) {
-      // Surface error to user instead of silent fail
-      alert(
-        "Something went wrong submitting your request. Please try again or email us directly."
-      );
-      console.error("ReportForm submit error:", err);
-    } finally {
-      setSubmitting(false);
+      saved = res.ok;
+    } catch {
+      saved = false;
     }
+    if (!saved) {
+      setViaEmailApp(true);
+      openMailDraft();
+    }
+    setSubmitting(false);
+    setSubmitted(true);
   }
 
   if (submitted) {
@@ -80,11 +86,12 @@ export default function ReportForm() {
           </svg>
         </div>
         <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-          Your Report Is On Its Way
+          {viaEmailApp ? "Your email app should now be open" : "Request received"}
         </h3>
         <p className="text-white/60 text-lg max-w-md mx-auto">
-          We&apos;re building your competitive intelligence report now. Expect
-          it in your inbox within 48 hours.
+          {viaEmailApp
+            ? `Press Send to reach us. If nothing opened, email ${FALLBACK_EMAIL}.`
+            : "We reply by email to confirm scope and price before any work starts."}
         </p>
       </div>
     );
@@ -92,6 +99,26 @@ export default function ReportForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-10000px",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+        }}
+      >
+        <label htmlFor="company_url_confirm">Leave this empty</label>
+        <input
+          id="company_url_confirm"
+          name="company_url_confirm"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
       {/* Row 1: Business Name + Website */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>

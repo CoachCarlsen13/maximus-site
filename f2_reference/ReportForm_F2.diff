@@ -1,0 +1,82 @@
+--- a/src/components/ReportForm.tsx
++++ b/src/components/ReportForm.tsx
+@@ -1,4 +1,4 @@
+-// ReportForm — AI Health Check request form. push2: opens a mailto draft; no API call.
++// ReportForm — AI Health Check request form. pm-revenue F2 draft: posts to /api/health-check-request, mailto fallback.
+ // Created: 2026-03-17
+ "use client";
+ 
+@@ -23,11 +23,10 @@
+     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+   }
+ 
+-  function handleSubmit(e: FormEvent) {
+-    // push2 2026-11-16: the Railway lead API is down ("Application not found"), so a POST always failed.
+-    // The request now opens the visitor's email app with the details filled in. Nothing is posted anywhere.
+-    e.preventDefault();
+-    setSubmitting(true);
++  const [viaEmailApp, setViaEmailApp] = useState(false);
++  const [honeypot, setHoneypot] = useState("");
++
++  function openMailDraft() {
+     const subject = encodeURIComponent(`AI Health Check request: ${form.businessName}`);
+     const body = encodeURIComponent(
+       [`Business: ${form.businessName}`, `Website: ${form.website}`, `Name: ${form.name}`, `Email: ${form.email}`,
+@@ -35,6 +34,28 @@
+         .filter(Boolean).join("\n"),
+     );
+     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
++  }
++
++  async function handleSubmit(e: FormEvent) {
++    // pm-revenue 2026-11-16 option F2 (CANDIDATE_PENDING_JEV, NOT DEPLOYED): post to our own route, which logs the
++    // request to Joel's sheet and emails him. If the route is not configured or fails, fall back to the mailto draft.
++    e.preventDefault();
++    setSubmitting(true);
++    let saved = false;
++    try {
++      const res = await fetch("/api/health-check-request", {
++        method: "POST",
++        headers: { "content-type": "application/json" },
++        body: JSON.stringify({ ...form, company_url_confirm: honeypot }),
++      });
++      saved = res.ok;
++    } catch {
++      saved = false;
++    }
++    if (!saved) {
++      setViaEmailApp(true);
++      openMailDraft();
++    }
+     setSubmitting(false);
+     setSubmitted(true);
+   }
+@@ -58,11 +79,12 @@
+           </svg>
+         </div>
+         <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+-          Your email app should now be open
++          {viaEmailApp ? "Your email app should now be open" : "Request received"}
+         </h3>
+         <p className="text-white/60 text-lg max-w-md mx-auto">
+-          Press Send in your email app to reach us. If nothing opened, email
+-          {" "}{CONTACT_EMAIL}. We reply by email; no delivery time is promised on this page.
++          {viaEmailApp
++            ? <>Press Send in your email app to reach us. If nothing opened, email {CONTACT_EMAIL}.</>
++            : <>We reply by email from {CONTACT_EMAIL} to confirm scope and price before any work starts.</>}
+         </p>
+       </div>
+     );
+@@ -70,6 +92,12 @@
+ 
+   return (
+     <form onSubmit={handleSubmit} className="space-y-5">
++      {/* honeypot: hidden from people; bots that fill it are rejected by the route */}
++      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
++        <label htmlFor="company_url_confirm">Leave this empty</label>
++        <input id="company_url_confirm" name="company_url_confirm" tabIndex={-1} autoComplete="off"
++          value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
++      </div>
+       {/* Row 1: Business Name + Website */}
+       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+         <div>

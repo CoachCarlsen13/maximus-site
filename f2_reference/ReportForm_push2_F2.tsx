@@ -1,0 +1,260 @@
+// ReportForm — AI Health Check request form. pm-revenue F2 draft: posts to /api/health-check-request, mailto fallback.
+// Created: 2026-03-17
+"use client";
+
+import { useState, type FormEvent } from "react";
+import { CONTACT_EMAIL } from "../lib/offers";
+
+export default function ReportForm() {
+  const [form, setForm] = useState({
+    businessName: "",
+    website: "",
+    name: "",
+    email: "",
+    phone: "",
+    challenge: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  const [viaEmailApp, setViaEmailApp] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+
+  function openMailDraft() {
+    const subject = encodeURIComponent(`AI Health Check request: ${form.businessName}`);
+    const body = encodeURIComponent(
+      [`Business: ${form.businessName}`, `Website: ${form.website}`, `Name: ${form.name}`, `Email: ${form.email}`,
+       form.phone ? `Phone: ${form.phone}` : "", form.challenge ? `What I want to fix: ${form.challenge}` : ""]
+        .filter(Boolean).join("\n"),
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    // pm-revenue 2026-11-16 option F2 (CANDIDATE_PENDING_JEV, NOT DEPLOYED): post to our own route, which logs the
+    // request to Joel's sheet and emails him. If the route is not configured or fails, fall back to the mailto draft.
+    e.preventDefault();
+    setSubmitting(true);
+    let saved = false;
+    try {
+      const res = await fetch("/api/health-check-request", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ...form, company_url_confirm: honeypot }),
+      });
+      saved = res.ok;
+    } catch {
+      saved = false;
+    }
+    if (!saved) {
+      setViaEmailApp(true);
+      openMailDraft();
+    }
+    setSubmitting(false);
+    setSubmitted(true);
+  }
+
+  if (submitted) {
+    return (
+      <div className="text-center py-12 animate-fade-in-up">
+        <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-6">
+          <svg
+            className="w-8 h-8 text-gold"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+          {viaEmailApp ? "Your email app should now be open" : "Request received"}
+        </h3>
+        <p className="text-white/60 text-lg max-w-md mx-auto">
+          {viaEmailApp
+            ? <>Press Send in your email app to reach us. If nothing opened, email {CONTACT_EMAIL}.</>
+            : <>We reply by email from {CONTACT_EMAIL} to confirm scope and price before any work starts.</>}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {/* honeypot: hidden from people; bots that fill it are rejected by the route */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="company_url_confirm">Leave this empty</label>
+        <input id="company_url_confirm" name="company_url_confirm" tabIndex={-1} autoComplete="off"
+          value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+      </div>
+      {/* Row 1: Business Name + Website */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label
+            htmlFor="businessName"
+            className="block text-sm font-medium text-white/70 mb-1.5"
+          >
+            Business Name <span className="text-gold">*</span>
+          </label>
+          <input
+            type="text"
+            id="businessName"
+            name="businessName"
+            required
+            value={form.businessName}
+            onChange={handleChange}
+            placeholder="Your Company"
+            className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="website"
+            className="block text-sm font-medium text-white/70 mb-1.5"
+          >
+            Website URL <span className="text-gold">*</span>
+          </label>
+          <input
+            type="url"
+            id="website"
+            name="website"
+            required
+            value={form.website}
+            onChange={handleChange}
+            placeholder="https://yourcompany.com"
+            className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Row 2: Name + Email */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-white/70 mb-1.5"
+          >
+            Your Name <span className="text-gold">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Jane Smith"
+            className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-white/70 mb-1.5"
+          >
+            Email <span className="text-gold">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            value={form.email}
+            onChange={handleChange}
+            placeholder="jane@yourcompany.com"
+            className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Row 3: Phone */}
+      <div>
+        <label
+          htmlFor="phone"
+          className="block text-sm font-medium text-white/70 mb-1.5"
+        >
+          Phone{" "}
+          <span className="text-white/30 font-normal">(optional)</span>
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          value={form.phone}
+          onChange={handleChange}
+          placeholder="(555) 123-4567"
+          className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+        />
+      </div>
+
+      {/* Row 4: Challenge */}
+      <div>
+        <label
+          htmlFor="challenge"
+          className="block text-sm font-medium text-white/70 mb-1.5"
+        >
+          What&apos;s your biggest challenge right now?{" "}
+          <span className="text-white/30 font-normal">(optional)</span>
+        </label>
+        <textarea
+          id="challenge"
+          name="challenge"
+          value={form.challenge}
+          onChange={handleChange}
+          rows={3}
+          placeholder="Tell us what keeps you up at night..."
+          className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors resize-none"
+        />
+      </div>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        disabled={submitting}
+        className="w-full btn-gold rounded-xl px-8 py-4 text-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {submitting ? "Sending..." : "Request an AI Health Check"}
+      </button>
+
+      {/* Trust Elements */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 pt-4">
+        {[
+          // pm-revenue 2026-11-16 (CANDIDATE_PENDING_JEV): old free-report lines removed ("No credit card required",
+          // "Yours to keep, no matter what", "100% confidential"); they contradicted the paid offer or were absolute claims.
+          "No payment is taken on this page",
+          "We reply by email before any work starts",
+          "We use your details only to reply to you",
+          "No sales calls unless you ask",
+        ].map((item) => (
+          <div key={item} className="flex items-center gap-2.5">
+            <svg
+              className="w-4 h-4 text-gold shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span className="text-white/50 text-sm">{item}</span>
+          </div>
+        ))}
+      </div>
+    </form>
+  );
+}
